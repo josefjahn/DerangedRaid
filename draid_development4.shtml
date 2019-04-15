@@ -1,0 +1,338 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 60 - 79</font><br><br>
+
+<A NAME="60">
+<font color=#FFFFFF size=+1>
+Day 60<BR>
+18.11.2000<BR>
+------------<BR>
+</font>
+X) Finished Linux Masterserver<BR>
+- It even works!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="61">
+<font color=#FFFFFF size=+1>
+Day 61<BR>
+19.11.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+- Added primitive data encapsulation<BR>
+- Added code to interact with the masterserver<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="62">
+<font color=#FFFFFF size=+1>
+Day 62<BR>
+20.11.2000<BR>
+------------<BR>
+</font>
+X) Implemented new text drawing code<BR>
+- It's much faster than the old one, and it looks great too!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="63">
+<font color=#FFFFFF size=+1>
+Day 63<BR>
+21.11.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="64">
+<font color=#FFFFFF size=+1>
+Day 64<BR>
+1.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="65">
+<font color=#FFFFFF size=+1>
+Day 65<BR>
+3.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+X) Worked on the menu code<BR>
+- There's still much to do here...<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="66">
+<font color=#FFFFFF size=+1>
+Day 66<BR>
+4.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+X) Worked on the menu code<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="67">
+<font color=#FFFFFF size=+1>
+Day 67<BR>
+8.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on network.cpp<BR>
+X) Worked on the menu code<BR>
+X) Fixed lighting<BR>
+- Now the sun creates correct lighting on both terrain and objects depending on time of day.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="68">
+<font color=#FFFFFF size=+1>
+Day 68<BR>
+12.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on the menu code
+- I finally got it to work, but I still have to add a few menu features.<BR>
+X) Added 3 new ship models<BR>
+- They're not textured yet. Damn this will take long, since they're so detailed!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="69">
+<font color=#FFFFFF size=+1>
+Day 69<BR>
+13.12.2000<BR>
+------------<BR>
+</font>
+X) Textured the 3 new ship models<BR>
+- Wow! Storm's work kicks ass!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap64.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap64.jpg" border=0></a> (Small fighter)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap70.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap70.jpg" border=0></a> (Medium fighter)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap67.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap67.jpg" border=0></a> (Large fighter)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="70">
+<font color=#FFFFFF size=+1>
+Day 70<BR>
+19.12.2000<BR>
+------------<BR>
+</font>
+X) Coded Jukebox<BR>
+- Now all MP3s in the "music\" directory get played automatically<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="71">
+<font color=#FFFFFF size=+1>
+Day 71<BR>
+23.12.2000<BR>
+------------<BR>
+</font>
+X) Worked on menu<BR>
+- Added more control types and wrote a simpler menu handler.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap75.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap75.jpg" border=0></a> (The options menu)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="72">
+<font color=#FFFFFF size=+1>
+Day 72<BR>
+25.12.2000<BR>
+------------<BR>
+</font>
+X) Improved Texture memory handling<BR>
+- I noticed that I actually had all textures in memory TWICE! I didn't know that stupid OpenGL already takes care of the whole thing :)<BR>
+X) Fixed a few memory leaks<BR>
+- Oh man, I am so stupid.. I'm just glad I didn't release this thing yet. It would've ended up in a catastrophy.<BR>
+X) Fixed map display<BR>
+- Finally those ugly visual artefacts on the map are gone<BR>
+X) Fixed water<BR>
+- It's less transparent, has more detailed reflections and generally looks better now. It's still too broght at times though. Many people complained about the water transparency, I'm glad that's dealt with.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="73">
+<font color=#FFFFFF size=+1>
+Day 73<BR>
+26.12.2000<BR>
+------------<BR>
+</font>
+X) Improved Sound handler<BR>
+- Sounds are now hearable over much greater distances<BR>
+- Explosion sounds are played back with adequate volume<BR>
+X) Improved "Loading"-display<BR>
+- Doesn't take up that much CPU power anymore.<BR>
+X) Added flares to lasers<BR>
+- The yellow laser bolts are now accompanied by flares to enhance visual effect<BR>
+X) Enlarged fire radius of SAM's<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap76.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap76.jpg" border=0></a> (Another menu shot)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap77.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap77.jpg" border=0></a> (The updated lasers)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="74">
+<font color=#FFFFFF size=+1>
+Day 74<BR>
+28.12.2000<BR>
+------------<BR>
+</font>
+X) Upgraded my computer<BR>
+- It's now a 900MHz Athlon! Yay!!<BR>
+X) Researched reallife-Reflections<BR>
+X) Fixed local lightsources<BR>
+- I finally found out what "Attenuation" means :)<BR>
+- Lasers and missiles now come with correct lighting. Whoo-hoo...<BR>
+- Added Lights to Explosions and stuff too<BR>
+- Sorry, no lightmaps yet. I don't know if I'll even implement them.
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap78.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap78.jpg" border=0></a> (2 ships fighting in circles like ballerinas :))<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="75">
+<font color=#FFFFFF size=+1>
+Day 75<BR>
+29.12.2000<BR>
+------------<BR>
+</font>
+X) Tried fixing terrain-evening bug<BR>
+- Buildings are still halfway buried in the ground<BR>
+- Spent 5 hours debugging. What the hell is wrong here?!?<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="76">
+<font color=#FFFFFF size=+1>
+Day 76<BR>
+30.12.2000<BR>
+------------<BR>
+</font>
+X) Improved Takeoff/Landing Handler<BR>
+- Now only 1 Ship can takeoff/land at a time<BR>
+<BR>
+X) Improved Camera Handler<BR>
+- Camera state is restored properly upon exiting menu<BR>
+<BR>
+X) Wrote .CFG file stuff for game setup<BR>
+- Now things like screen size, color depth, etc. are finally saved into a config file<BR>
+<BR>
+X) Wrote mouse controls<BR>
+- Finally a smooth way of steering the ship.<BR>
+- Controls work like in Netwars: the position of your mouse pointer tells where the ship is flying to, <br>
+i.e. you don't have to continuously move the mouse to fly a circle.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap79.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap79.jpg" border=0></a> (Awesome sky)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap80.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap80.jpg" border=0></a> (SAMs are deadly)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="77">
+<font color=#FFFFFF size=+1>
+Day 77<BR>
+31.12.2000<BR>
+------------<BR>
+</font>
+X) DERANGED RAID IS ONE YEAR OLD NOW!!!<BR>
+- Happy Birthday!<BR>
+<BR>
+X) Added switchable Mouseinvert<BR>
+- IMHO playing without mouseinvert is just... gay... :)))<BR>
+<BR>
+X) Fixed Memory Leak<BR>
+- Forgot to free a few sound samples, which caused system instabilities. Fixed.<BR>
+<BR>
+X) I've caught the flu. Now I'm lying in bed, damnit.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="78">
+<font color=#FFFFFF size=+1>
+Day 78<BR>
+1.1.2001<BR>
+------------<BR>
+</font>
+X) Fixed AI ship "wiggle"<BR>
+- They now fly smooth and streamlined, and not as jerky as before.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="79">
+<font color=#FFFFFF size=+1>
+Day 79<BR>
+3.1.2001<BR>
+------------<BR>
+</font>
+X) Finished Single Player Menu<BR>
+
+
+
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

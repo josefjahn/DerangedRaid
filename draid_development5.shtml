@@ -1,0 +1,456 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 80 - 99</font><br><br>
+
+<A NAME="80">
+<font color=#FFFFFF size=+1>
+Day 80<BR>
+4.1.2001<BR>
+------------<BR>
+</font>
+X) Added key sounds to menu<BR>
+<BR>
+X) Added error logging into a file<BR>
+- Don't expect any wonders. Currently the only problem is that if DRaid crashes for some reason, <BR>
+it doesn't free the resources which results in system slowdowns. <BR>
+The file "error.log" is only useful if there's a problem loading a texture file, no sound is available and stuff.<BR>
+<BR>
+X) Added "Out of texture memory" handling<BR>
+- DerangedRaid uses 25 Megs of texture RAM (yes, quite a lot) so older cards may experience problems. <BR>
+If OpenGL runs out of memory the game will still run, but textures will look weird and an error message <BR>
+will be added to error.log stating that something went wrong. Terrain Texturing will be automatically switched <BR>
+off for subsequent runs if that happens, too.<BR>
+- Damnit, should I tweak the game around to use less memory?<BR>
+<BR>
+X) Reduced texture RAM usage to 22 Megs<BR>
+- Still quite much.<BR>
+- I have 3 options:<BR>
+  a) offer 128x128 lo-res textures as an option<BR>
+  b) reduce landscape texture resolution to 1024x1024 (currently uses 2048*2048*3 = 12 Megs)<BR>
+  c) dynamic texture loading.<BR>
+- If I use option a) and b), the total texture RAM usage would shring to 6 Megs, which would be ok for a lo-res setting.<BR>
+- After careful consideration I came to the conclusion that I'll have to write a texture downscaler.<BR>
+<BR>
+X) Wrote texture scaler<BR>
+- Now 128x128 textures work as planned<BR>
+- I also added a "LoRes Textures" toggle in the options menu<BR>
+- Scaling the Landscape texture works too, but there's a small displacement; the whole terrain is shifted by one grid unit.<BR>
+- Fixed landscape grid-shift.<BR>
+- The whole thing is now rock stable and works, even on 8meg cards!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="81">
+<font color=#FFFFFF size=+1>
+Day 81<BR>
+5.1.2001<BR>
+------------<BR>
+</font>
+X) Changed Sky<BR>
+- I ditched the whole skysphere thingy, and made more lifelike sky-planes instead.<BR>
+- Added "dusk/dawn shaded color" sky effects<BR>
+<BR>
+X) Added "Snow" terrain type<BR>
+<BR>
+X) Updated existing terrain types<BR>
+- Less cartoony, more lifelike coloring.<BR>
+<BR>
+X) Added Sun<BR>
+- ... together with adequate cloud lighting!<BR>
+- I also increased the time resolution for smooth sun movement<BR>
+<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap81.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap81.jpg" border=0></a> (First planar sky)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap82.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap82.jpg" border=0></a> (Notice the missing sky haze?)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap83.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap83.jpg" border=0></a> (It's really annoying, so...)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap84.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap84.jpg" border=0></a> (...I finally added it. Notice the cool red "glow?)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap85.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap85.jpg" border=0></a> (Wow, now that's a much better sky than ever!)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap86.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap86.jpg" border=0></a> (This is the new "lush" texturing)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap87.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap87.jpg" border=0></a> (The Sun!! Well now it's gettin' hot)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap88.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap88.jpg" border=0></a> (Spectacular Sundown)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap89.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap89.jpg" border=0></a> (Another Sundown)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap90.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap90.jpg" border=0></a> (My current Windows Wallpaper ;) )<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="82">
+<font color=#FFFFFF size=+1>
+Day 82<BR>
+6.1.2001<BR>
+------------<BR>
+</font>
+X) Added random dusk/dawn coloring<BR>
+- Now even every day looks completely different!<BR>
+- Never have to look at the same colors again!<BR>
+<BR>
+X) Fixed terrain height-texturing<BR>
+- A bug caused the textures to be distributed unevenly, thus causing large areas with only 1 active texture. Fixed.<BR>
+<BR>
+X) Added popup messages<BR>
+- Things like Missile locks, chat messages or the next music's song title are displayed via that nifty fading popup line.<BR>
+<BR>
+X) Tried to fix HomeObject function<BR>
+- It works better now, but is still buggy<BR>
+<BR>
+X) Improved "Dive" animation<BR>
+- Killed ships now pick up speed while they tumble downwards.<BR>
+<BR>
+X) Tweaked spawn code<BR>
+- AI's won't spawn simultaneously - I hope.<BR>
+- Speaking of AI's, respawned AI ships still keep their damage smoke. That's weird.<BR>
+<BR>
+X) Fixed Map Display not showing local player<BR>
+<BR>
+X) AAAAH!! The game crashed a few times!<BR>
+- That's most certainly related to a bug in the respawn code... I think...<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap91.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap91.jpg" border=0></a> (A wonderful red-yellowish sundown)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap92.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap92.jpg" border=0></a> (An evening in a volcanic landscape)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap93.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap93.jpg" border=0></a> (Polar day)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap94.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap94.jpg" border=0></a> (Fixed terrain height-texturing)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="83">
+<font color=#FFFFFF size=+1>
+Day 83<BR>
+7.1.2001<BR>
+------------<BR>
+</font>
+X) Added watchdog timer<BR>
+- ..which provides a clean "emergency exit" in case the framerate drops to un-usable levels due to program errors.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap95.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap95.jpg" border=0></a> (Whowaz!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="84">
+<font color=#FFFFFF size=+1>
+Day 84<BR>
+30.1.2001<BR>
+------------<BR>
+</font>
+X) Added Loadout menu<BR>
+- Upon docking, players can select their ship's weapons loadout as well as vehicle type in a nice menu.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="85">
+<font color=#FFFFFF size=+1>
+Day 85<BR>
+31.1.2001<BR>
+------------<BR>
+</font>
+X) Wrote proper Game-Over handling<BR>
+- Until now, DRaid was just quitting whenever a command center was destroyed.<BR>
+<BR>
+X) Added Ship LOD Models<BR>
+- Detail meshes are rendered only when a ship is nearby. For farther distances, the old plain ship mesh is used.<BR>
+<BR>
+X) Different Sky generated for every new day<BR>
+<BR>
+X) Crashing into the ground is now lethal.<BR>
+- For humans, anyway. The AI isn't good enough for enabling this on them too, and networked Objects are being handled by their respective client anywhooo.<BR>
+
+X) Added "Radar Lock" warning klaxon<BR>
+- It's like the missile warning, but it sounds whenever an enemy ship has you in it's crosshairs. The missile klaxon overrides it, coz' I guess a missile is a tad more important in that moment ;)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="86">
+<font color=#FFFFFF size=+1>
+Day 86<BR>
+1.2.2001<BR>
+------------<BR>
+</font>
+X) Researched Stencil Buffer<BR>
+<BR>
+X) Wrote 3D-Particle Renderer<BR>
+- I can now render 100% correct particles as real 3D-meshes WITHOUT using any slow sort algorythm. It all happens via stenciling.<BR>
+- This algorithm may very well replace the 2d-renderer someday, but not until I've redone the missile trails to use fewer faces.<BR>
+- Right now I'll use it for echaust flares, positional lights and stuff.<BR>
+- Ooops, forgot to supply stencil buffer on OpenGL-Init, 's fixed now.<BR>
+<BR>
+X) Implemented "Particle Slots" for Objects<BR>
+- These are fixed positions on 3D-meshes where particle emitters can be "mounted". Extremely useful for positional lights and stuff...<BR>
+- Aargh... Doesn't work yet, the darned emitters won't move at all!<BR>
+- Fixed the move bug.<BR>
+- Equipped ships with exhaust flares, started adding position lights to buildings as well.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap96.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap96.jpg" border=0></a> (The ship's engines mean business)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap97.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap97.jpg" border=0></a> (testing position-lights on a ship)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap98.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap98.jpg" border=0></a> (The bomber looks insanely cool with these engines!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="87">
+<font color=#FFFFFF size=+1>
+Day 87<BR>
+2.2.2001<BR>
+------------<BR>
+</font>
+X) Added lights and blinking stuff to the rest of the buildings<BR>
+- Adds much to realism.<BR>
+<BR>
+X) Added flashing position-lights to the ships<BR>
+- Good for even more eyecandy.<BR>
+<BR>
+X) Fixed a bug on deleting particle emitters<BR>
+<BR>
+X) Updated readme and main DRaid-website<BR>
+- The update contains new screenshots and gameplay information. Also, the layout has been improved slightly.<BR>
+<BR>
+X) Worked on Object-Delete bug<BR>
+- Sometimes the player ends up steering a laser mesh or a missile mesh after intense battles, I've yet to find out why.<BR>
+<BR>
+X) Found a bug in the damage smoke functions<BR>
+- The damage smoke doesn't appear anymore, therefore the 3d light flares start to flicker. I guess I screwed up something.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap99.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap99.jpg" border=0></a> (Command Center with blinking lights)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap100.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap100.jpg" border=0></a> (Mine with lights)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap101.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap101.jpg" border=0></a> (Light Scout Ship during takeoff)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap102.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap102.jpg" border=0></a> (Another takeoff shot)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="88">
+<font color=#FFFFFF size=+1>
+Day 88<BR>
+3.2.2001<BR>
+------------<BR>
+</font>
+X) Fixed flickering light flares<BR>
+<BR>
+X) Worked on Object-Delete bug<BR>
+- Apparently starting a game can lead to having the player steer a command center again...<BR>
+<BR>
+X) Found the cause of the landscape leveling bug, the ground collision inaccuracy bug and the general "edgy" terrain look<BR>
+- It's because the terrain LOD renderer is skipping every 2nd vertice, thus rendering the terrain with half the detail!!!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="89">
+<font color=#FFFFFF size=+1>
+Day 89<BR>
+4.2.2001<BR>
+------------<BR>
+</font>
+X) Tried Fixing LOD Renderer<BR>
+- Strange holes appear on the ground, and sometimes whole areas become flattened! What the hell is going on here??<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="90">
+<font color=#FFFFFF size=+1>
+Day 90<BR>
+5.2.2001<BR>
+------------<BR>
+</font>
+X) Finally Fixed LOD Renderer!!!!<BR>
+- and thus doubled terrain mesh resolution. Yay!<BR>
+- The cause? Well, let's just say you better not use 128 array fields while only initializing 64....<BR>
+<BR>
+X) Found a few remaining bugs<BR>
+- Damage smoke appears at the wrong position on the map...<BR>
+- missile & AI homing seems to be broken again - but nothing serious this time<BR>
+- Weird things happen when 2 ships collide... the player respawns as building and such.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap103.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap103.jpg" border=0></a> (Behold, the new and improved terrain mesh!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="91">
+<font color=#FFFFFF size=+1>
+Day 91<BR>
+6.2.2001<BR>
+------------<BR>
+</font>
+X) Fixed damage smoke<BR>
+<BR>
+X) Fixed AI and missile homing<BR>
+- for the hundredths time I think... but now it really works well, missiles don't fly in circles (unless they loose their target, that is)<BR>
+<BR>
+X) Ouch, false alarm: The AI still flies in circles sometimes....<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap104.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap104.jpg" border=0></a> (This is what happens to dumb AI opponents)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="92">
+<font color=#FFFFFF size=+1>
+Day 92<BR>
+11.2.2001<BR>
+------------<BR>
+</font>
+X) Added Autoupdater<BR>
+<BR>
+X) Released V1<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="93">
+<font color=#FFFFFF size=+1>
+Day 93<BR>
+12.2.2001<BR>
+------------<BR>
+</font>
+X) Fixed a small bug in the AutoUpdater<BR>
+<BR>
+X) Released Update V2<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="94">
+<font color=#FFFFFF size=+1>
+Day 94<BR>
+14.2.2001<BR>
+------------<BR>
+</font>
+X) Converted most large "static" data structures to "dynamic"<BR>
+- This is helluva beta. I hope it improves performance and stability on some systems<BR>
+<BR>
+X) Fixed a small menu bug<BR>
+<BR>
+X) Fixed 2 typos in the main renderer<BR>
+- Wow! I wonder how the whole thing could've worked with these errors.<BR>
+<BR>
+X) Added 2 tank meshes and several LOD meshes<BR>
+- Not textured yet, but that's going to happen soon.<BR>
+<BR>
+X) Added a ton of debug output to the logfile<BR>
+<BR>
+X) Made objects visible from within the command center<BR>
+<BR>
+X) Made the main "Objects" array static again<BR>
+- Too much weirdness going on there. It's not that big in memory consumption anyway.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="95">
+<font color=#FFFFFF size=+1>
+Day 95<BR>
+1.5.2001<BR>
+------------<BR>
+</font>
+X) I was lazy on the logbook. Too lazy.<BR>
+<BR>
+X) There's one large bug inside the "Start New Game" code which causes players to pilot a building (!) and some other weird things. I'll have to fix this soon or I'll get in some serious troubles here.<BR>
+<BR>
+X) Worked on the network code. <BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 96<BR>
+4.5.2001<BR>
+------------<BR>
+</font>
+X) Implemented most of the basic functionality of the netcode. (All this is still untested, but I think I can run the first live network tests in two days or so)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 97<BR>
+8.5.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 98<BR>
+9.5.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code (ok so it obviously takes some more time...)<BR>
+<BR>
+X) Finally fixed object management ONCE AND FOR ALL!<BR>
+<BR>
+X) Improved Laser appearance and firing range<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap109.jpg"><img src="http://www.playspoon.com/draid/ssnap109.jpg" border=0></a> (Night lights. Note to self: we need night vision and an artificial horizon)<BR>
+<a href="http://www.playspoon.com/draid/snap110.jpg"><img src="http://www.playspoon.com/draid/ssnap110.jpg" border=0></a> (...missile attacks now work correctly.)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 99<BR>
+11.5.2001<BR>
+------------<BR>
+</font>
+X) Implemented Compatibility Mode<BR>
+ - Looks awful, but it works.<BR>
+<BR>
+X) Added Trees!<BR>
+ - They can be placed randomly, or fractally (using the sky texture ;) )<BR>
+ - They are not textured yet tho..<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap111.jpg"><img src="http://www.playspoon.com/draid/ssnap111.jpg" border=0></a> (Compatibility Mode)<BR>
+<a href="http://www.playspoon.com/draid/snap112.jpg"><img src="http://www.playspoon.com/draid/ssnap112.jpg" border=0></a> (Quad-mesh used by trees)<BR>
+
+
+
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

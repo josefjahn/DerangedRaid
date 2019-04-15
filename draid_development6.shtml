@@ -1,0 +1,408 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 100 - 120</font><br><br>
+
+<A NAME="100">
+<font color=#FFFFFF size=+1>
+Day 100<BR>
+12.5.2001<BR>
+------------<BR>
+</font>
+X) Wrote Tree-Deletion stuff<BR>
+ - Now placing a building also deletes trees as neccessary.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 101<BR>
+13.5.2001<BR>
+------------<BR>
+</font>
+X) Added stars<BR>
+ - Not tested yet (coz all I have right now is a crappy laptop running in compatibility mode)<BR>
+ - Their intensity is not yet regulared accorting to TimeOfDay.<BR>
+<BR>
+X) Improved mouse controls<BR>
+ - No more jumpyness. Ships now have a feelable inertia.<BR>
+<BR>
+X) Tested Stars<BR>
+ - They look COOL!<BR>
+<BR>
+X) Worked on the trees<BR>
+ - Well I still don't have the hang on blending, I need some more time on that.<BR>
+ - Fixed blending issues!<br>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap113.jpg"><img src="http://www.playspoon.com/draid/ssnap113.jpg" border=0></a> (The first screenshot showing stars)<BR>
+<a href="http://www.playspoon.com/draid/snap114.jpg"><img src="http://www.playspoon.com/draid/ssnap114.jpg" border=0></a> (...note how they add to the realism)<BR>
+<a href="http://www.playspoon.com/draid/snap115.jpg"><img src="http://www.playspoon.com/draid/ssnap115.jpg" border=0></a> (The first tree!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 102<BR>
+16.5.2001<BR>
+------------<BR>
+</font>
+X) Added animated multiple-part objects<BR>
+ - The new AAA turret now visibly rotates and aims at targets!<BR>
+ - The model isn't textured yet. Hurry up, Anthony! :)<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap116.jpg"><img src="http://www.playspoon.com/draid/ssnap116.jpg" border=0></a> (New AAA that can rotate and aim)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 103<BR>
+18.5.2001<BR>
+------------<BR>
+</font>
+X) Separated Camera from keyboard movement<BR>
+ - Now I can add external views<BR>
+ - I played around with the new camera system for almost the whole day ;)<BR>
+<BR>
+X) Worked on Network Code<BR>
+ - Implemented about 40% of the server-side netcode. Overall netcode status: 80% complete.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 104<BR>
+19.5.2001<BR>
+------------<BR>
+</font>
+X) Changed text renderer to scale according to window size<BR>
+ - No more "our of bounds" text displays<BR>
+<BR>
+X) Worked on Network Code<BR>
+ - Finished Server Side netcode! Now I just need to do the server list display/menu and the terrain synchronizing netcode.<BR>
+ - Overall netcode status: 90% complete.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 105<BR>
+20.5.2001<BR>
+------------<BR>
+</font>
+X) Worked on Network Code<BR>
+- First working & moving networked object!<BR>
+- Still a lot of bugs<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 106<BR>
+21.5.2001<BR>
+------------<BR>
+</font>
+X) Worked on Network Code<BR>
+ - Fixed tons of bugs<BR>
+ - Objects not properly propagated from client to server and vice-versa<BR>
+ - Still problems with networked collision detection / object damage stuff<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 107<BR>
+29.6.2001<BR>
+------------<BR>
+</font>
+X) Finally: Holidays! That means much more time for DRaid again!<BR>
+<Br>
+X) Fixed bug in NewFractal() creating "spikes" in terrain.<BR>
+<BR>
+X) Implemented Night Vision<BR>
+<BR>
+X) Fixed Map display<BR>
+- Now with proper Orientation and much more stable<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 108<BR>
+1.7.2001<BR>
+------------<BR>
+</font>
+X) Added "fractal" tree scattering<BR>
+<BR>
+X) Fixed Night Vision<BR>
+ - was broken during heavy firefights)<BR>
+<BR>
+X) Improved Tree renderer<BR>
+ - Now handles up to 10.000 trees, could even do much more...<BR>
+<BR>
+X) Finally fixed clouds being screwed up after each NewSky()!<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap117.jpg"><img src="http://www.playspoon.com/draid/ssnap117.jpg" border=0></a> (Night Vision, trees n' stuff...)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 109<BR>
+2.7.2001<BR>
+------------<BR>
+</font>
+X) Added Objective Markers and HUD indicators<BR>
+<BR>
+X) Water is now sphere- instead of reflection-mapped.<BR>
+<BR>
+X) Added new loading screen<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap118.jpg"><img src="http://www.playspoon.com/draid/ssnap118.jpg" border=0></a> The enemy... in my new crosshairs ;)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 110<BR>
+3.7.2001<BR>
+------------<BR>
+</font>
+X) Added artificial horizon<BR>
+<BR>
+X) Optimized sin() and cos() function calls<BR>
+<BR>
+X) Optimized glBindTexture() calls<BR>
+<BR>
+X) Tried improving 2d particle renderer<BR>
+- Still a little off sometimes<BR>
+<BR>
+X) Fixed angular system for what must've been the 100th time..<BR>
+- This time there are no circling missiles anymore! Really! PROMISE!! ;)<BR>
+<BR>
+X) Fixed Message Handler<BR>
+- now works again too...<BR>
+<BR>
+X) Fixed all object animations<BR>
+- except for the landing stuff, which is still whacko<BR>
+<BR>
+X) Added Positional Sound<BR>
+- Now you hear where the shots come from too.<BR>
+<BR>
+X) Started implementing weather system<BR>
+- We now also have dark thunderstorm clouds, lightning and thunder (cool!)<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap119.jpg"><img src="http://www.playspoon.com/draid/ssnap119.jpg" border=0></a> Just another screenshot...<BR>
+<a href="http://www.playspoon.com/draid/snap120.jpg"><img src="http://www.playspoon.com/draid/ssnap120.jpg" border=0></a> ...and another one.<BR>
+<a href="http://www.playspoon.com/draid/snap121.jpg"><img src="http://www.playspoon.com/draid/ssnap121.jpg" border=0></a> First glimpses of the artificial horizon<BR>
+<a href="http://www.playspoon.com/draid/snap122.jpg"><img src="http://www.playspoon.com/draid/ssnap122.jpg" border=0></a> Another random pic<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 111<BR>
+4.7.2001<BR>
+------------<BR>
+</font>
+X) Finished coding Weather State-Machine<BR>
+<BR>
+X) Added Fuzzy-controlled Ambient Sounds!!<BR>
+- Now you can hear the wind rustling through the trees, crickets chirping in the fields, and birds singing in the air.<BR>
+- At high altitudes, these sounds diminish and you only hear the wind howling.<BR>
+- Additional sounds effects like Rain, etc. have also been added.<BR>
+- This stuff sounds AWESOME, and really breathes life into the game ;)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 112<BR>
+5.7.2001<BR>
+------------<BR>
+</font>
+X) Coded Rain<BR>
+- ...and now the NewFractalSky() is borken somehow!<BR>
+- Fixed NewFractalSky (had to remove a global float definition!!), now the all the particles blink!!!<BR>
+- Fixed the weird stuff. This is how:<BR>
+//	AbsoluteMaxParticles = 10000 * (int)g_ispeedfactor;<BR>
+	AbsoluteMaxParticles = (int)(10000.0f * g_ispeedfactor);<BR>
+Both lines are identical. but the first one screws up everything. Spooky huh?<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap123.jpg"><img src="http://www.playspoon.com/draid/ssnap123.jpg" border=0></a> It's raining!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 113<BR>
+11.7.2001<BR>
+------------<BR>
+</font>
+X) Took a break from DRaid for a while<BR>
+- I'm programming a *very small* shooter for a few friends. It's gonna be a freeware game too. Details will follow soon.<BR>
+X) Enabled placement of several buildings on one terrain tile<BR>
+- No more totally spread bases, unless you want to.<BR>
+X) Fixed landing animation
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap124.jpg"><img src="http://www.playspoon.com/draid/ssnap124.jpg" border=0></a> Several Buildings on one terrain tile<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 114<BR>
+12.7.2001<BR>
+------------<BR>
+</font>
+X) FINALLY fixed TerrainHeight function 100%<BR>
+- Now it's absolutely perfect, which is neccessary for the tanks to look good<BR>
+<BR>
+X) Added Tanks into the game<BR>
+- And they work! Whee!! Now I need to add some decent controls for the tanks<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap125.jpg"><img src="http://www.playspoon.com/draid/ssnap125.jpg" border=0></a> Tank alert!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 115<BR>
+13.7.2001<BR>
+------------<BR>
+</font>
+X) Implemented 3D Ambient sound for Objects<BR>
+- Now you can hear a ship's fly-by.<BR>
+- Most buildings have various humming sounds too<BR>
+<BR>
+X) Completely scrapped 3D Ambient sound system again<BR>
+- even though it worked fine<BR>
+<BR>
+X) Implemented Hardware 3D Sound<BR>
+- That's better ;)<BR>
+- Uh-oh, ruined engine sounds and the 2D sound handler. Will have to rewrite that stuff<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap126.jpg"><img src="http://www.playspoon.com/draid/ssnap126.jpg" border=0></a> Leaving the homebase for some action<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 116<BR>
+24.7.2001<BR>
+------------<BR>
+</font>
+X) Still major problems with the 3d sound<BR>
+- Apparently can't mix 2d and 3d sound!<BR>
+- Totally messed up the ambient sound code<BR>
+- I barely fixed it up again...<BR>
+<BR>
+X) Network code hangs!<BR>
+- Maybe the class A network here, I don't know yet<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 117<BR>
+26.7.2001<BR>
+------------<BR>
+</font>
+X) Added particle slots to the new building meshes<BR>
+<BR>
+X) Fixed a multiplay-related bug in the collision detection<BR>
+<BR>
+X) Spent the rest of the day looking for memory corruptions due to int->float conversions<BR>
+- DRaid now runs much more stable.
+- There are still squares forming in the clouds, tomorrow I'll check the float->int conversions too<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 118<BR>
+27.7.2001<BR>
+------------<BR>
+</font>
+X) Optimized FindTargetByAngle function<BR>
+- Should vastly improve performance with many objects in the game<BR>
+<BR>
+X) Fixed float->int conversion errors in the Particle Handler<BR>
+- ...but still blocks in the clouds...<BR>
+<BR>
+X) Found bug in light handler<BR>
+- So that's what causes the memory overwrites and the blocky sky!<BR>
+- I still have no clue as to why this happens, everything looks fine to me there...<BR>
+- OMFG! This also caused the weird bugs in the network code!! Win98 memory management is pure shit.<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap127.jpg"><img src="http://www.playspoon.com/draid/ssnap127.jpg" border=0></a> It always rains on the way home.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 119<BR>
+28.7.2001<BR>
+------------<BR>
+</font>
+X) Disabled FX Light Sources<BR>
+- Causes too much trouble and I don't know why yet<BR>
+<BR>
+X) Added proper light rotation<BR>
+- Until now, rotating objects weren't lit correctly. Now they are.<BR>
+- The sun seems a bit off now.. Hmm, strange...<BR>
+- The HUD goes whacko when an enemy fires a guided missile at the player. I guess I don't reset the model matrix properly<BR>
+<BR>
+X) Added smoke effects to tanks<BR>
+- Looks kinda neat!<BR>
+- Even has different effects depending on terrain type!<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap128.jpg"><img src="http://www.playspoon.com/draid/ssnap128.jpg" border=0></a> A Tank at full speed sure leaves a formidable cloud of dust ;)<BR>
+
+
+<BR>
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

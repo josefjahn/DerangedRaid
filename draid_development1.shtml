@@ -1,0 +1,831 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 01 - 19</font><br><br>
+
+<A NAME="1">
+<BR>
+<font color=#FFFFFF size=+1>
+Day 1<BR>
+31.12.1999<BR>
+------------<BR>
+</font>
+X) Downloaded Glide 3 SDK - didn't work on Voodoo3<BR>
+X) Downloaded Glide 2 SDK - worked!<BR>
+X) Began modifying Glide tutorial nr. 22<BR>
+X) Built quad rendering engine<BR>
+X) Early "landscape" routine - flat world<BR>
+X) Added distance fog<BR>
+X) Added lightmap<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap1.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap1.jpg" border=0></a> (My first attept at rendering terrain)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap2.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap2.jpg" border=0></a> (same, different fog)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="2">
+<font color=#FFFFFF size=+1>
+Day 2<BR>
+1.1.2000<BR>
+------------<BR>
+</font>
+X) Added 2d-clipping<BR>
+X) Added Wireframe mode<BR>
+X) Added rudimentary 3d clipping<BR>
+ - [FIXED]FIXME: Faces get clipped as soon as ONE of the vertexes is behind the camera i.e. too early.<BR>
+X) Added crude keyboard controls<BR>
+X) Added random height variation to terrain<BR>
+ - looked awful because of quad rendering<BR>
+X) Rewrote engine to render triangles<BR>
+ - [FIXED] FIXME: Some Vertices are now being obsoletely calculated and projected<BR>
+   The data structure is now much smaller as every coordinate is stored only once<BR>
+   Several Faces can use the same coordinates without needing more memory<BR>
+X) Vertice generation fixed after 4 hours<BR>
+ - Now, the landscape generation is ALMOST flawless<BR>
+ - The landscape vertices use the same vertices several times to speed up rendering<BR>
+   However, this confuses the texture orientation a bit. Not really important now, but may<BR>
+   be disturbing later...<BR>
+X) Disabled lightmap for debug reasons (better visibility)<BR>
+X) Introduced Backface culling<BR>
+ - [FIXED]FIXME: Triangle rendering sequence not yet sorted by distance!<BR>
+   ARGH! Backface culling is NOT enough! We need to render these triangles<BR>
+   according to their distance from the viewer!<BR>
+ - I just wrote a Quicksort function which sorts the triangles by z-depth.<BR>
+   So far it doesn't work, and I don't know whether the Sort function<BR>
+   or the z-depth are screwed up. Screen output is the same as always.<BR>
+ - Aha. It seems like the QuickSort thingy just doesn't do ANYTHING.<BR>
+   Ah well... I've fucked up converting QuickSort from Basic to C... I will fix that tomorrow.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap3.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap3.jpg" border=0></a> (Random terrain, notice the missing depth-sort of the faces)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="3">
+<font color=#FFFFFF size=+1>
+Day 3<BR>
+2.1.2000<BR>
+------------<BR>
+</font>
+X) Fixed the sorting algorithm.<BR>
+ - It was sorting forward, while I needed reverse sorting... duh..<BR>
+   Hey, this landscape thingy already looks cool!!<BR>
+ - The second pass rendering causes a "transparency" effect. This must be cool for water!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap4.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap4.jpg" border=0></a> (The first clean&error free rendering. Notice that colored fog doesn't work)<BR>
+<BR>
+X) Implemented multi-pass triangle rendering<BR>
+ - Now fog and stuff are rendered correctly.<BR>
+   Wow, imagine this stuff used to simulate day/night cycles.. Woohoo!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap5.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap5.jpg" border=0></a> (Ok, now we have colored fog ;-))<BR>
+<BR>
+X) Added the first glimpses of an object management system.<BR>
+ - Every vertice and every triangle now belongs to a specific object.<BR>
+   Hey, someone has to keep track of all those triangles!<BR>
+<BR>
+X) Enlarged Terrain array<BR>
+ - [FIXED]FIXME: As of yet, EVERY vertice is being transformed prior to far&near clip check.<BR>
+   For speed's sake this has to be optimized someday.<BR>
+<BR>
+X) Implemented fractal terrain generation<BR>
+   The whole terrain is now much more realistic.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap6.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap6.jpg" border=0></a> (A smooth fractal terrain. Adding water would be a breeze.)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap7.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap7.jpg" border=0></a> (Wireframe picture of a similar fractal terrain. Notice that the Range of Sight will be increased drastically once the vertec calculation routines have been optimized)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap8.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap8.jpg" border=0></a> (The very same Wireframe, this time cut off at sea level)<BR>
+<BR>
+X) Implemented trigonometric lookup tables<BR>
+ - Got rid of SIN() and COS(), speeds up rendering quite much.<BR>
+<BR>
+X) Optimized matrix transformation just a little bit<BR>
+   I fiddled with the calculations as much as I could, but it's still slower than comparable programs. My guess is that I'm at the limit with C code here, and that the only way to have faster gfx is to use assembler-code for matrix operations.<BR>
+<BR>
+X) Modified terrain code<BR>
+ - We can now modify the terrain in realtime. This will be needed for "flatting" the ground<BR>
+   before building a structure on it.<BR>
+<BR>
+X) Started Yaw/Pitch/Roll camera movement code<BR>
+   Cool, descending/ascending according to the Camera Pitch works already.<BR>
+   Tomorrow I'll code the actual "fly" stuff so we have the right "feel" to flying.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="4">
+<font color=#FFFFFF size=+1>
+Day 4<BR>
+3.1.2000<BR>
+------------<BR>
+</font>
+X) Found out that the QUICKSORT-code is slowing things down, NOT the matrix calcs!!<BR>
+   I tried the VC-supplied qsort() function, but is was even slower. The ImpSaver program<BR>
+   uses NO z-sorting at all and I wonder how it does that.<BR>
+   In short: if I don't z-sort the faces, rendering is 20 times faster - but I get draw errors.<BR>
+<BR>
+X) Tried several sorting algorythms. No speed gain.<BR>
+<BR>
+X) Tried drawVertex functions from other engines - no improvement.<BR>
+<BR>
+X) Wrote a better (but not perfect) geometric clipping function.<BR>
+ - Faces won't disappear anymore, but you may get a distorted texture at extreme situations.<BR>
+<BR>
+X) Optimized Quicksort<BR>
+ - Only visible faces get sorted. The less faces visible, the faster the r_speed gets.<BR>
+<BR>
+X) Fiddled with Keyboard controls<BR>
+ - Still to do: Sine interpolation for smooth motions<BR>
+<BR>
+X) Finished keyboard controls<BR>
+ - Some issues remain (like loopings) but it works good enough for now.<BR>
+<BR>
+X) Fixed texture orientation<BR>
+ - It's now set via a simple integer variable.<BR>
+   Since 2 triangles form a rectangle, 2 texture orientations can occur.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap9.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap9.jpg" border=0></a> (Proper texture alignments, early 3d clipping, red misty fog)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="5">
+<font color=#FFFFFF size=+1>
+Day 5<BR>
+4.1.2000<BR>
+------------<BR>
+</font>
+X) Found an alternative to z-sort: depth-buffering!<BR>
+ - Hahaa! So that's how they do it! Man, this is cool!<BR>
+   Now the only framerate-killer remaining is the Vertex calcs which are still being<BR>
+   done for ALL vertices instead of only the visible ones.<BR>
+<BR>
+X) Now vertices are being calculated ONLY if visible.<BR>
+ - This is extremely buggy and I don't have a clue about why - yet.<BR>
+<BR>
+X) My PC's Power Supply blew up!<BR>
+ - It died a "Thermal Death" because the cooling fan malfunctioned.<BR>
+   It took me 6 hours to repair the darned thing.<BR>
+<BR>
+X) Early RGB lighting!<BR>
+ - But I still have to implement proper code to actually calc the light.<BR>
+<BR>
+X) Fixed the Vert calcs. FINALLY!! (Phew)<BR>
+<BR>
+X) STRANGE BUG:<BR>
+ - Out of nowhere, I can not DECREASE the pitchTime properly! It seems like some<BR>
+   "ghost" always resets it to zero!!! I can't find the source of that problem,<BR>
+   so I hacked the movement code to overcome this - for now...<BR>
+ - I just added a new variable "xpitchTime" and changed the code to use this. Now it works!!<BR>
+   VERY STRANGE!!! Seems to be some kind of memory overlapping, since "pitchTime" gets<BR>
+   messed up just before the vertex transformations, during face calcs...<BR>
+   "pitchTime" gets set to "1.0000E-27" out of nowhere, while NO OTHER variable is being<BR>
+   affected by this.<BR>
+<BR>
+X) Triangle rendering improved<BR>
+ - Only clipped triangles are being rendered with guDrawTriangleWithClip, the rest<BR>
+   uses the normal guDrawTriangle function.<BR>
+ - r_speed is now acceptable fast.<BR>
+ - I think this is as fast as it gets. The terrain is VERY detailed and big, therefore<BR>
+   the buildings and vehicles won't have many triangles. Fair trade.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap10.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap10.jpg" border=0></a> (2 different textures, lighting (hard to see) and COOL r_speed!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="6">
+<font color=#FFFFFF size=+1>
+Day 6<BR>
+5.1.2000<BR>
+------------<BR>
+</font>
+X) Outlined gameplay.<BR>
+ - It's 1:15am and I'm finished with the basic "gameplay" description.<BR>
+   Next on the agenda: Designing the buildings, - and learning maths for my<BR>
+   big math-exam on the 10th of January!!<BR>
+<BR>
+X) Added various object management data<BR>
+ - Soon I'll code a map display<BR>
+<BR>
+X) Learned Maths!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="7">
+<font color=#FFFFFF size=+1>
+Day 7<BR>
+6.1.2000<BR>
+------------<BR>
+</font>
+X) Researched Lighting techniques<BR>
+<BR>
+X) Researched 3DS and 3DS-ASC loading techniques<BR>
+<BR>
+X) Wrote detailed object and mesh data structures.<BR>
+ - Every mesh type is going to have one set of "mother" arrays for vertices and faces.<BR>
+   For rendering n objects, these arrays will be copied n-times into the main arrays.<BR>
+<BR>
+X) Started implementing 3DS-ASC loader<BR>
+ - Hasn't been tested yet, because there are still no functions to manage object rotation<BR>
+   and translation.<BR>
+<BR>
+X) Started implementing vertex lighting and a global sun entity.<BR>
+ - Special FX lighting will either be done separately (with a small hack),<BR>
+   or use similar functions (more likely)<BR>
+ - Tried lighting... doesn't work yet.<BR>
+<BR>
+X) GLOBAL LIGHTING WORKS!!!!!<BR>
+ - This is so unbelievable cool!! It was the sun's position, which must not be at (0/0/0).<BR>
+ - Chances are that Special FX Lighting will work with similar functions.<BR>
+   However I have to do a third pass rendering to actually "lighten up" textures.<BR>
+   All it does right now is scaling down the rgb values. Man, this is going to be a blast!<BR>
+<BR>
+X) Learned Maths!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap11.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap11.jpg" border=0></a><BR>
+<a href="http://spaceballs.dhs.org/draid/snap12.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap12.jpg" border=0></a> (Both shots show the excellent lifelike smooth lighting of the landscape)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="8">
+<font color=#FFFFFF size=+1>
+Day 8<BR>
+7.1.2000<BR>
+------------<BR>
+</font>
+X) Finished 3DS-ASC loader.<BR>
+ - Loading, translation and rotation works, but the objects still<BR>
+   need to be centered.<BR>
+ - There are some face visibility problems, dunno why yet.<BR>
+ - Object lighting is static right now. I'll have to make up something for this.<BR>
+<BR>
+X) Researched various 3D-clipping methods.<BR>
+   I will probably implement "Sutherland-Hodgeman Clipping"<BR>
+<BR>
+X) Rudimentary landscape collision code added<BR>
+<BR>
+X) Object movement works<BR>
+ - Strange visual artefacts - see pictures<BR>
+<BR>
+X) Learned Maths!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap13.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap13.jpg" border=0></a> (If anyone knows why this looks so strange, please tell me)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap14.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap14.jpg" border=0></a><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="9">
+<font color=#FFFFFF size=+1>
+Day 9<BR>
+8.1.2000<BR>
+------------<BR>
+</font>
+X) Fixed texture orientation of 3DS-ASC loader<BR>
+   ...along with a couple of other bugs.<BR>
+ - Still face visibility problems<BR>
+<BR>
+X) Fixed landscape collision code<BR>
+ - It's crude, but works safely.<BR>
+<BR>
+X) Designed a few simple test meshes<BR>
+ - Just a "box-building" and a primitive ship for the beginning<BR>
+<BR>
+X) Started writing Building placement code<BR>
+ - This is going to be a bit tough: It has to even the landscape before placing the building<BR>
+   atop of the evened surface.<BR>
+<BR>
+X) Building works!!<BR>
+ - Structures can be placed on the map at the touch of a button. It evens the terrain<BR>
+   and checks if there's already a building there before doing enything.<BR>
+   No fancy building "animations" or effects - yet.<BR>
+   Now, all we need is some code to REMOVE objects again. Isn't that hard.<BR>
+<BR>
+X) Improved object movement code<BR>
+ - I added a ship which can be remotely controlled with the number keys.<BR>
+   Crude again, but works perfectly for the start. Now I can start with the Flying-AI<BR>
+<BR>
+X) Started AI Design<BR>
+ - There will be 2 forms of AI: One for flying and one for building.<BR>
+   The flying-AI probably won't be too clever. It gets its commands from the building AI<BR>
+   It works like this: To build something as a human, you normally have to "be there" <BR>
+   with your ship since buildings are being "deployed" at your current position.<BR>
+   Because of this, the AI also needs to have a ship at the future building's position<BR>
+   to be able to actually build, or else it would be unfair.<BR>
+   The building AI orders the AI-ship(s) to the desired position and deploys the building<BR>
+   as soon as one of the AI-ships is directly above. The AI-ship is then "released" to it's<BR>
+   normal duty, i.e. attacking players and enemy structures.<BR>
+ - To make things easier for the AI, the ships will be exchanging their target information,<BR>
+   i.e. they will form groups to attack fortified or 100% healthy targets.<BR>
+   They will ONLY attack alone if the target is weak enough for one ship to handle.<BR>
+   This will ensure that the difficulty level is high enough.<BR>
+ - I don't know yet if I'm going to be fair enough to make the AI *NOT* know human's<BR>
+   positions beforehand. It's hard to code an "exploring" AI...<BR>
+<BR>
+X) Learned Maths!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap15.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap15.jpg" border=0></a> (Shows the working "building" code, and the realtime terrain modifications)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="10">
+<font color=#FFFFFF size=+1>
+Day 10<BR>
+10.1.2000<BR>
+------------<BR>
+</font>
+X) Tried implementation of ASE loader<BR>
+ - Doesn't work yet<BR>
+<BR>
+X) Improved landscape collision code<BR>
+ - Still not optimal<BR>
+<BR>
+X) Implemented transparent textures<BR>
+ - This stuff is for weapons, smoke and particles.<BR>
+<BR>
+X) Added laser bolt<BR>
+ - No "fire" functionality yet, just the mesh, texture and proper rendering.<BR>
+ - In the future, this should cast light too<BR>
+<BR>
+X) Added weapons handler<BR>
+<BR>
+X) Added first "fire" routine<BR>
+ - Strange Bug: I can fire 3 or 4 laser bolts, but after that I cannot fire anymore at all!<BR>
+   I dunno why yet. I'm tired for today, going to sleep now.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap16.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap16.jpg" border=0></a> (The first laser bolt)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="11">
+<font color=#FFFFFF size=+1>
+Day 11<BR>
+28.1.2000<BR>
+------------<BR>
+</font>
+X) Whoa! Long break!<BR>
+ - I had to take a break for my semester exams. All go now ;-)<BR>
+ - Re-Installed everything, it took me a while to get VC running.<BR>
+<BR>
+X) Increased World Scale<BR>
+ - I dunno yet if this helps, but I noticed that most face visibility errors go away<BR>
+   when I go a bit farther away from the object. Soooo... I *hope* that this fixes those problems.<BR>
+<BR>
+X) Fixed a laser bug<BR>
+ - I can now fire the laser continuously, but I get strange visual artefacts on object cleanup.<BR>
+   Hmmm, Must be some error with the object removal code. I'm pretty sure I did something stupid again.<BR>
+ - This whole ObjectAdd/ObjectRemove stuff seems to be as fragile as hell. I *knew* it was no good idea<BR>
+   to code during a full moon...<BR>
+<BR>
+X) Researched Sound programming<BR>
+ - I think I will go with MIDAS, as they offer a good Wave playback as well as a XM-Module player!<BR>
+   As most of you know, I'm a module freak-  so MIDAS fits just fine ;-)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="12">
+<font color=#FFFFFF size=+1>
+Day 12<BR>
+2.2.2000<BR>
+------------<BR>
+</font>
+X) Houston, we have MUSIC!!!<BR>
+ - MIDAS makes it possible. Real Code-Plug&Play ;-)<BR>
+   ...which reminds me that I'll need to have some music done for this too...<BR>
+   The module player supports MOD, S3M and XM. It does NOT support .IT files<BR>
+<BR>
+X) Researched sound handling<BR>
+ - Sound playback is a science of its own...<BR>
+   This will be pretty tough to code, especially the engine/wind sounds.<BR>
+ - The engine will use real F-16 sounds, I have excellent looping samples of that.<BR>
+<BR>
+X) Object movement fixed!<BR>
+ - The strange object movement was fixed (I forgot a cos somewhere)<BR>
+   This also affects AI and laser movements.<BR>
+<BR>
+X) Still trying to fix the Object Add/Remove code<BR>
+ - Stray faces still appear, although much less often. The laser speed was increased too.<BR>
+<BR>
+X) Still no real working ground Collision code<BR>
+ - This is very annoying.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="13">
+<font color=#FFFFFF size=+1>
+Day 13<BR>
+7.2.2000<BR>
+------------<BR>
+</font>
+X) Wrote AI framework<BR>
+ - The AI doesn't do much right now. It has a certain "thinking interval" at which<BR>
+   it reconsiders it's situation, much like the SPOONBOT. It is able to choose a target <BR>
+   and track it down. This can be used in conjunction with the "fire" code to make the AI<BR>
+   attack an Object. For moving objects, the AI will have to aim somewhere ahead of the target's<BR>
+   current position to hit it, because the lasers themselves have a travel time too.<BR>
+   This will require tedious tweaking.<BR>
+ - As of yet, functionality of this code isn't proven!<BR>
+<BR>
+X) Wrote "object homing" code<BR>
+<BR>
+X) Eliminated all compiler warnings<BR>
+<BR>
+ - And as a result of all this, I introduced a major crash bug. I'll look into that tomorrow.<BR>
+   This is the reason why I couldn't test my new AI code.<BR>
+<BR>
+X) Tried implementing sound code<BR>
+ - Doesn't work yet, MIDAS quits at multichannel allocation!<BR>
+<BR>
+X) Played DeltaForce2 a lot ;-)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="14">
+<font color=#FFFFFF size=+1>
+Day 14<BR>
+8.2.2000<BR>
+------------<BR>
+</font>
+X) Fixed crash bug<BR>
+ - It was, of course, a pointer problem.<BR>
+<BR>
+X) Cleaned up directory structure<BR>
+ - Deranged Raid now has it's own directory, and it's no longer called "TEST22" ;-)<BR>
+   Music, sound, textures and meshes have their own directories respectively.<BR>
+<BR>
+X) Experimented with different depth buffer methods<BR>
+ - Still face visibility errors.<BR>
+<BR>
+X) SOUND!!! YEEEE-HAAAW!!!!<BR>
+ - Un-bee-leave-able! I can play a module, hundreds of sound effects and even streamed<BR>
+   WAVE data, and all this simultaneously!! MIDAS is absolutely cool.<BR>
+ - Plus, I won't need to rewrite ANYTHING for Linux!!<BR>
+ - Finally, my huge military sound file library turns out to be good for something ;-)<BR>
+<BR>
+X) Sound setup is now saved in the file "SOUND.CFG" after initial configuration.<BR>
+<BR>
+X) Experimented with coordinate system<BR>
+ - It's awful... The gound lies on the X/Z Axis, and height is the negative (!!) Y-Axis.<BR>
+   Plus the 0/0 point lies in the CENTER of the map (instead of an edge) so there's<BR>
+   additional problems with integer rounding.<BR>
+<BR>
+X) Experimented with Landscape Collision code<BR>
+ - Now it works on ONE movement direction.<BR>
+ - Fixed a bug where Camera/Landscape collisions worked but Object/Landscape didn't.<BR>
+ - The whole thing is still choppy, but I'll continue working on it.<BR>
+<BR>
+X) Worked on AI<BR>
+ - Still no comfirmation, because Targeting code doesn't work!<BR>
+<BR>
+X) Finished Engine Sounds<BR>
+ - The Engine now has 2 simultaneous sounds + one ambient (inside or outside) sound.<BR>
+ - The "turbine" part of the engine sound modulates pitch according to the set speed<BR>
+ - The "wind noise" part of the engine sound does the same, but with the REAL speed.<BR>
+ - Ambient sound does the same as the wind noise.<BR>
+ - I think about implementing "gravity", i.e. you get faster when your nose points down.<BR>
+   This could increase the wind and ambient pitch, while the engine sound remains the same.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="15">
+<font color=#FFFFFF size=+1>
+Day 15<BR>
+9.2.2000<BR>
+------------<BR>
+</font>
+X) Worked on AI<BR>
+ - Targeting code works!<BR>
+ - Direct homing works!<BR>
+   Unfortunately, indirect (slew) homing leads to having the pursuer fly in circles forever.<BR>
+   This is caused by the fact that there's 2 degrees in between 1 and 359 degrees, NOT 358...<BR>
+   I.e. I have to tell the AI to turn the *other* way 'round if there's more than 180 degrees to turn.<BR>
+<BR>
+X) Switched to DirectSound mode<BR>
+ - Although MIDAS performed well with MMSYSTEM, I switched it to facilitate DirectX<BR>
+   because it simply has a much faster response time. (and I want that laser sound when I press<BR>
+   fire, not 0.5 sec later!)<BR>
+<BR>
+X) Fixed homing code<BR>
+ - AI pilots are now restricted to the same laws of physics (limited turn rate, etc) as the player.<BR>
+ - The AI doesn't fly endless loopings anymore, PLUS it does some really cool maneuvers <BR>
+   in order to keep on your tail.<BR>
+ - Flying an Immelmann doesn't impress the AI, now that it knows the basics of air combat.<BR>
+   Now I can start coding a "AI-fire" routine. The homing code will also be used for the guided missiles.<BR>
+ - Currently, the AI follows the target *directly*. For lasers to hit their target, it will have to aim "ahead".<BR>
+<BR>
+X) Added comments to every function<BR>
+<BR>
+X) Added comments to every part of the main program code<BR>
+<BR>
+X) Discovered another bug in homing code<BR>
+ - While flying "upwards" to meet their target is no problem for the AI, flying "downwards" doesn't work<BR>
+   for some strange reason<BR>
+<BR>
+X) A little AI test ;-)<BR>
+ - For test reasons, I spawned a couple of fighters and let them chase another AI fighter... Cool!<BR>
+<BR>
+X) I made the ships and lasers smaller to have more "realistic" proportions.<BR>
+<BR>
+X) Made new laser mesh<BR>
+ - It's smaller, but more visible.<BR>
+<BR>
+X) Updated fighter mesh<BR>
+ - Looks more like the real than a childrens toy ;-)<BR>
+<BR>
+X) Created missile mesh<BR>
+<BR>
+X) Created command center mesh<BR>
+<BR>
+X) Updated building code to force a one-sqare space between buildings<BR>
+ - ...else other nearby buildings get "buried" by the terrain-evening code<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="16">
+<font color=#FFFFFF size=+1>
+Day 16<BR>
+10.2.2000<BR>
+------------<BR>
+</font>
+X) Created power plant mesh<BR>
+<BR>
+X) Updated missile mesh<BR>
+ - I have to keep poly count VERY low, because I don't plan to code dynamic LOD...<BR>
+<BR>
+X) Wrote Team and Player classes<BR>
+ - I'm now beginning with the whole team/player management stuff.<BR>
+<BR>
+X) Created mine mesh<BR>
+<BR>
+X) Found the cause of the face visibility errors!!<BR>
+ - My world was scaled too "small", hence the 16-bit WBUFFER wasn't able to correctly sort<BR>
+   faces close to the camera.<BR>
+ - As a result, I scaled the world 100 times larger. The fragile landscape collision function<BR>
+   doesn't work anymore, but I can fix that later<BR>
+<BR>
+X) The game crashed!!! OH MY GOD!!<BR>
+ - First I thought it was that missing missile sound file, but it seems that the imperfect<BR>
+   object removal code causes this crash after removing a certain amount of objects!<BR>
+ - Nope, it was MIDAS: You oghta allocate a sound channel prior to using it ;-) Fixed.<BR>
+ - Ran a stability test: 5 AAA Sites continuously firing at 5 ships which are chasing each other.<BR>
+   It ran for 3 hours, well until Internet Explorer suddenly popped up to complain about the missing<BR>
+   internet connection. AAAAAAARGH!!!!<BR>
+<BR>
+X) Created AAA-Site mesh<BR>
+<BR>
+X) Created SAM-Site mesh<BR>
+<BR>
+X) Wrote AAA-Site handler<BR>
+ - Now I have a AAA-Site that automagically fires lasers at enemy ships!<BR>
+ - Boy these artillery guys shoot like gods ;-)<BR>
+<BR>
+X) Updated laser mesh<BR>
+ - Decreased poly count to 8 (!!) so the lasers won't take that much processing power anymore.<BR>
+<BR>
+X) Wrote safer ALT-TAB handling<BR>
+ - Doesn't work yet, "Access violation in DirectDraw" - At least it doesn't crash windoze...<BR>
+<BR>
+X) Fixed remaining face visibility errors!!!!!<BR>
+ - FINALLY!! It wasn't the object-removal code! The "stray faces" appeared because<BR>
+ - I was clearing the screen without setting depth-buffering to GR_COMP_ALWAYS!<BR>
+ - Now, all that keeps me from celebrating is the fact that I still have no 3d-clipping<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap17.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap17.jpg" border=0></a> (A few buildings)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap18.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap18.jpg" border=0></a> (AAA in action)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap19.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap19.jpg" border=0></a> (All buildings, and AAA again)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="17">
+<font color=#FFFFFF size=+1>
+Day 17<BR>
+11.2.2000<BR>
+------------<BR>
+</font>
+X) Fixed Landscape collision code<BR>
+ - This is the FIRST time this works really flawless!<BR>
+<BR>
+X) Wrote Player spawn code<BR>
+ - I'll code a cool takeoff/landing sound sequence. It will rock!<BR>
+<BR>
+X) Wrote Team spawn code<BR>
+ - Something's wrong here, it won't spawn any AI ships, and the player flies in a COMMAND CENTER?!?<BR>
+   What the...???<BR>
+ - 3 hours later, I found the error: It was an obsolete semicolon at the end of a for() line. <BR>
+   AAAAAAAARRRGH!!!<BR>
+<BR>
+X) Fixed AI bug<BR>
+ - Now it flies downward too<BR>
+<BR>
+X) Updated AAA handler<BR>
+ - AAA handles multiple targets<BR>
+ - AAA only fires on targets within range<BR>
+<BR>
+X) Wrote Object animation handler<BR>
+ - This is keeping track of all the fixed object animations like ship takeoff/landing, and death animations.<BR>
+ - Ships downed by lasers won't explode in mid-air, but "dive" down like real planes...<BR>
+   ...with correct sound orchestration of course ;-)<BR>
+<BR>
+X) Completed Ship landing animation and sound<BR>
+<BR>
+X) Completed Ship takeoff animation and sound<BR>
+<BR>
+X) Started work on guided missile<BR>
+ - Guided missiles should have a 10 degree max. "lock" angle. Doesn't work yet.<BR>
+ - The homing missiles don't "home in", they actually "flee" from the target.<BR>
+   I'll look into that tomorrow.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="18">
+<font color=#FFFFFF size=+1>
+Day 18<BR>
+12.2.2000<BR>
+------------<BR>
+</font>
+X) Continued work on guided missile<BR>
+<BR>
+X) Scrapped whole angular system<BR>
+ - All my problems are caused by a system that goes from 0 to 360 degrees.<BR>
+ - After 5 hours (!) I came to the solution of using a -360 to +360 degree system - which now works flawless.<BR>
+<BR>
+X) Finished guided missile<BR>
+ - Well, except for the missile's warhead, which should only aquire targets within a 10 degree view.<BR>
+   But I'll work on that later.<BR>
+<BR>
+X) Researched particle systems<BR>
+ - I'm not sure about which method to use... flat sprites or 3d objects<BR>
+ - 2d Sprites would be much faster, but I don't know if I can properly integrate them into WBUFFER.<BR>
+ - Maybe if I use a single vertice for each particle, I can just draw a square sprite on that position.<BR>
+   The only flaw is that this sprite won't be rotated according to the camera's roll angle.<BR>
+   Sierra's Homeworld uses the same technique, and it looks cool as long as the sprite image (smoke, etc) is circular.<BR>
+   ...and If I use many small particles for explosions, chances are that nobody even discoveres this glitch ;-)<BR>
+<BR>
+X) Source filesize has increased from 10kb (23rd Dec 1999) to 130kb (12th Feb 2000)<BR>
+<BR>
+X) Wrote Particle and Particle-Emitter datatypes<BR>
+ - I was tempted to just code the particles directly into objects, but that would've been very limiting<BR>
+   and prone to errors.<BR>
+<BR>
+X) Wrote Particle handler<BR>
+<BR>
+X) Wrote Particle Emitter handler<BR>
+<BR>
+X) Wrote Particle Renderer<BR>
+ - ...everything still untested...<BR>
+ - Ok, the particle management system works, I get a steady flow of particles.<BR>
+ - Particle Renderer... uhm... I get a white rectangle at the right position, so that's a good start.<BR>
+   Scaling doesn't work yet, though.<BR>
+ - Scaling works!<BR>
+ - PARTICLE SYSTEM WORKS!!!!!<BR>
+   I'll do an unusual approach to explosions: they'll be completely done with particles!<BR>
+<BR>
+X) Coupled Particle Emitters to missiles<BR>
+ - <B>W-O-W</B> !!!!!!<BR>
+ - Do you know what I *always* loved about a few games? The cool missile smoke trails. The longer, the better.<BR>
+   And now I'll do what I always wanted ;-)<BR>
+ - Hmm, there's still a problem with updating the parent object of emitters, especially when I delete objects.<BR>
+   This is most noticable when I place a AAA turret somewhere, and fire a missile while the AAA turret is firing too:<BR>
+   The result is that the missiles loose their trail, and the laser bolts leave a smoke trail!<BR>
+ - Oh well, I'll fix that tomorrow.<BR>
+<BR>
+X) Earlier today my brother saw the game<BR>
+ - Here's what he said: "You should consider selling it to the military" :-))<BR>
+<BR>
+X) The particle system was done in 3 hours. - from scratch.<BR>
+ - If that's not a speed record, then I don't know.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap20.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap20.jpg" border=0></a> (Particles!!!)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap21.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap21.jpg" border=0></a> (A few guided missiles harrass an enemy fighter)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="19">
+<font color=#FFFFFF size=+1>
+Day 19<BR>
+13.2.2000<BR>
+------------<BR>
+</font>
+X) Fixed particle emitter errors on object-delete<BR>
+ - Tried to keep emitters away from objects, code-wise, I still have those errors on deleting objects.<BR>
+ - Ha! I found the error! It was me typing "==" instead of "="...<BR>
+<BR>
+X) Coded Particle Variation Parameters for Speed, Size, and Gravity<BR>
+ - Now I can make missile smoke trails, chimney smoke, explosions and dirt.<BR>
+<BR>
+X) Discovered a particle glitch<BR>
+ - Ouch: You can see Particles through Objects and even the terrain.<BR>
+<BR>
+X) Coupled particles to buildings<BR>
+ - Both the power plant and the mine have this cool particle smoke.<BR>
+ - Now I need to worry about limiting the amount of particles in the game...<BR>
+<BR>
+X) Wrote Particle limiter<BR>
+ - The more power plants you built, the lighter the smoke will get. -> r_speed constant.<BR>
+ - I'll code priorities for important emitters.<BR>
+<BR>
+X) Wrote Explosions<BR>
+ - Not much right now, just a few red/yellow particles at missile impact.<BR>
+ - ...which reminds me of the fact that I still need to write object/object collision detection!!!<BR>
+<BR>
+X) Wrote SAM-Site handler<BR>
+ - SAM's have a very long reload time, but unlimited ammo.<BR>
+<BR>
+X) Wrote positional sound system<BR>
+ - and it worked on the first try, except for the panning.<BR>
+<BR>
+X) Wrote object/object collision detection<BR>
+ - and it works!!!<BR>
+<BR>
+X) Wrote Damage code<BR>
+<BR>
+X) Wrote Resource/Energy management code<BR>
+ - Buildings don't drain energy yet, dunno why this doesn't work<BR>
+<BR>
+X) Wrote Ship- & Building-Death code<BR>
+ - Yeah! Now you can actually get killed, and you can destroy objects<BR>
+ - The sound code has been updated to use differend samples for different impact types<BR>
+ - Human respawning doesn't work yet, because I accidentally forgot to update the Camera Position.<BR>
+ - Hmmm, there seems to be a serious bug with the respawn code, because the game bombs to Windows<BR>
+   at certain respawn situations...<BR>
+<BR>
+X) Implemented "Dive" object animation<BR>
+ - Remember the old WW2-Planes that use to plunge downwards instead of exploding in mid-air?<BR>
+   From now on, if you shoot an enemy with lasers, he'll go down like a real plane, with sound and smoke!<BR>
+   When you kill someone with a missile, he'll die in a traditional mid-air blast fashion.<BR>
+<BR>
+X) Updated Object Animation Code<BR>
+ - Now, the AI's will run through the same start procedure as the human player.<BR>
+<BR>
+<b>NOTE: These shots were made with the lighting system disabled.<br><br></B>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap22.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap22.jpg" border=0></a> (I shot the AI while it was still taking off...)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap23.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap23.jpg" border=0></a> (The mine and the power plant have cool smoke)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap24.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap24.jpg" border=0></a> (A missile impacts on a mine)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+
+
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

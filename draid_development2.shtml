@@ -1,0 +1,572 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 20 - 39</font><br><br>
+
+<A NAME="20">
+<font color=#FFFFFF size=+1>
+Day 20<BR>
+14.2.2000<BR>
+------------<BR>
+</font>
+X) Worked on fixing respawn bug<BR>
+ - Looks good so far...<BR>
+ - No more crashes, I believe I really solved the problem.<BR>
+<BR>
+X) Designed new weapon: the Satellite Uplink Station<BR>
+ - In a game like this, there should be some super-weapon. The Satellite Uplink is a new building<BR>
+   which will enable the player to control an orbital weapons platform. The satellite's powerful<BR>
+   plasma beam slices through any defense and any shield, annihilating whole buildings in seconds.<BR>
+ - I'll code extra special fx to make this baby extra-sweet ;-)<BR>
+ - To order a satellite strike, the player has to fire a special "marker missile" at the target.<BR>
+   The marker missile is unguided, and attaches itself onto the target upon impace.<BR>
+   As soon as a building is marked, a countdown will appear to show the time remaining until the<BR>
+   satellite is in firing position. When the counter reaches 0, the satellite will fire it's plasma<BR>
+   cannon, and blow the tagged object into tiny pieces.<BR>
+ - A ship can only carry 1 marker missile, and you cannot carry any other kind of weapon simultaneously.<BR>
+   That means that you have to decide your loadout while docked to the Command Center.<BR>
+<BR>
+X) Coded marker missile<BR>
+ - It has a blue trail, and you can also "tag" enemy ships - if you hit them.<BR>
+<BR>
+X) Wrote Satellite handler<BR>
+ - IT WORKS!! Whoa, that's great<BR>
+<BR>
+X) Wrote Satellite Blast SpecialFX<BR>
+ - now a cool green plasma beam blasts down from the sky.<BR>
+ - Try tagging an enemy ship with the marker missile... It' nice to watch them getting blown into pieces from space!<BR>
+<BR>
+X) Fixed object removal code<BR>
+<BR>
+X) Fixed various particle effects on respawn<BR>
+<BR>
+X) Fixed Object Animation code<BR>
+ - I built in a few new errors lately... fixed now.<BR>
+<BR>
+X) Wrote Shield handler<BR>
+ - Now all shields will regenerate over time.<BR>
+<BR>
+X) Created Satellite Uplink Station mesh<BR>
+<BR>
+X) One stray particle emitter...<BR>
+ - ...appears out of nowhere at position 0/0 and I dunno why yet...<BR>
+ - It appears together with some object, but at pos. 0/0/-500.. I believe it's a debug leftover.<BR>
+<BR>
+X) Started with texture editor<BR>
+ - As of yet, none of my objects are correctly textured!<BR>
+<BR>
+X) Textured all objects<BR>
+ - Wow. The transparent glass really rocks!! Check out the new screenshots!!<BR>
+<BR>
+X) R_SPEED....<BR>
+ - I'm afraid I'll have to redo some meshes because of obsolete faces...<BR>
+ - In order to play smoothly, you'll need an Athlon 400. That's how it is.<BR>
+   I'll try to do some optimisations, but I am afraid it won't get much faster.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap25.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap25.jpg" border=0></a> (Glamour shot of some of the objects)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap26.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap26.jpg" border=0></a> (A plasma beam from a satellite impacts on an enemy mine)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="21">
+<font color=#FFFFFF size=+1>
+Day 21<BR>
+15.2.2000<BR>
+------------<BR>
+</font>
+X) Fixed stray particle emitters<BR>
+<BR>
+X) Added Missile vulnerability<BR>
+ - You can now shoot missiles prior to impact, this is especially useful against marker missiles!<BR>
+<BR>
+X) Added AI Fire code<BR>
+ - The AI attacks with multiple weapon systems, and has a quick reaction time<BR>
+ - When you fire a missile at an AI ship, it will try to destroy the missile as self-defense.<BR>
+ - It doesn't use the marker missile yet.<BR>
+<BR>
+X) Added missile lock aspect<BR>
+ - To lock on a target, you have to keep it within the targeting retice until you hear a continuous lock signal.<BR>
+ - Missiles fired without a lock will simply fly straight.<BR>
+<BR>
+X) Added ship/ship and ship/building collision code<BR>
+ - Now you can collide in mid-air, as well as crash into a building. This can be used as tactical advantage, because<BR>
+   even if you got shot, you still have a chance of crashing into an enemy building, thus doing extensive damage.<BR>
+<BR>
+X) Wrote AI evade code<BR>
+ - The AI doesn't crash into buildings during attacks anymore.<BR>
+   The downside is that it may take more time for the AI to destroy a building<BR>
+<BR>
+X) Optimized rendering engine<BR>
+ - Objects won't be inserted into the rendering pipe if they're too far away to be visible.<BR>
+   This guarantees that large out-of-sight bases don't slow down r_speed any more!<BR>
+<BR>
+X) Added simle targeting retice<BR>
+ - It doesn't do much. It's a green cross which turns red if your missile has locked onto an enemy target.<BR>
+<BR>
+X) Added Health display<BR>
+<BR>
+X) Added base chat<BR>
+ - The Command Center will alert you if it takes fire, and also on critical damage.<BR>
+<BR>
+X) Various bugfixes and cleanup<BR>
+<BR>
+X) First public release of the demo<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="22">
+<font color=#FFFFFF size=+1>
+Day 22<BR>
+16.2.2000<BR>
+------------<BR>
+</font>
+X) Researched Direct3D programming<BR>
+ - ... maybe someday I'll add DirectX support for all the non-Voodoo users out there<BR>
+<BR>
+X) Researched DirectPlay programming<BR>
+ - Coding Multiplayer is going to be tough.<BR>
+<BR>
+X) Wrote Framerate-counter<BR>
+<BR>
+X) Wrote gamespeed stabilizer<BR>
+ - Previously, Game Speed depended solely on r_speed. Now you're flying with constant speed, regardless<BR>
+   or your machine's processor.<BR>
+ - I updated the collision detection to handle "between timeframes" collisions, which results in a much more<BR>
+   reliable collision detection.<BR>
+ - Laser fire rates remain the same too!<BR>
+<BR>
+X) Made Command Center power-independend<BR>
+ - Now you won't loose your last base defense when the power goes out.<BR>
+   The Command Center is now a totally autonomous building, making it more difficult to destroy.<BR>
+<BR>
+X) Decreased Poly-count on almost all meshes<BR>
+ - The whole thing got 50% faster!<BR>
+<BR>
+X) Fixed AI and missile "wing-wiggle"<BR>
+ - Now they won't wiggle erratically, but fly smoothly.<BR>
+<BR>
+X) CRASH BUG!!!!<BR>
+ - A really nasty crash bug which appears in the middle of the game!!!<BR>
+ - If may have been those DirectPlay #includes at the top, but I'm not sure.<BR>
+   Maybe I'll have to undo some things to see what causes this.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="23">
+<font color=#FFFFFF size=+1>
+Day 23<BR>
+17.2.2000<BR>
+------------<BR>
+</font>
+X) DIRECTX IS DEAD<BR>
+ - I evaluated DirectPlay and Direct3D for 2 days. The result: I will *NOT* use it.<BR>
+   It is unstable, unfinished, proprietary, complicated and slow.<BR>
+ - I'll write my own multiplayer code. That's still easier than porting DerangedRaid from C to C++.<BR>
+ - I'll take a closer look to OpenGL, as *this* is a powerful interface!<BR>
+<BR>
+X) Tried fixing crash bug<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="24">
+<font color=#FFFFFF size=+1>
+Day 24<BR>
+18.2.2000<BR>
+------------<BR>
+</font>
+X) Tried fixing crash bug<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="25">
+<font color=#FFFFFF size=+1>
+Day 25<BR>
+19.2.2000<BR>
+------------<BR>
+</font>
+X) FIXED CRASH BUG<BR>
+ - Wow. I still don't know what caused it, but I scrapped everything, took the demo release code and <BR>
+   added the new stuff there. Now it works, don't ask me why.<BR>
+<BR>
+X) Removed "anti-wiggle" code<BR>
+ - Although I still don't know what caused the crash bug, I removed the anti-wiggle code.<BR>
+   I suspect that some illegal angle operation caused the game to hang in mid-flight.<BR>
+<BR>
+X) Fixed damage bug<BR>
+ - Until now, missiles weren't able to kill a ship. Fixed.<BR>
+<BR>
+X) Discovered spawn bug<BR>
+ - Well, it wasn't really a new discovery, but several ships spawning at the same point cause trouble ;-)<BR>
+ - I'll adress it when I start with the multiplayer code.<BR>
+<BR>
+X) Discovered fire bug<BR>
+ - Whenever one of your own laser shots or missiles hit the ground, your AI wingman will start to fire!<BR>
+<BR>
+X) Added day/night cycle<BR>
+ - ..."From Dusk Till Dawn"... ;-)<BR>
+<BR>
+X) Added particle priority<BR>
+ - Now, Power plants and the likes don't use up all the particles anymore, leaving more left for missiles and such.<BR>
+<BR>
+X) Decreased AAA range<BR>
+ - This is an attempt to make r_speed a bit higher for older machines<BR>
+<BR>
+X) Added variable range-of-sight<BR>
+ - Visibility now depends on your framerate. The higher, the farther you'll see.<BR>
+ - I am aware about the fact that this is unfair on low-end machines, but then ask yourself if you'd like to have<BR>
+   slideshow-speed instead...<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="26">
+<font color=#FFFFFF size=+1>
+Day 26<BR>
+20.2.2000<BR>
+------------<BR>
+</font>
+X) Started converting to OpenGL<BR>
+ - Many hours spent hunting crash bugs, without seeing one visible triangle!<BR>
+ - Fullscreen doesn't work! It keeps telling me "16 bit fullscreen not supported"<BR>
+   Do I need to scrap my Voodoo and get an OpenGL accelerator card or what???<BR>
+ - Now I have a black window (no fullscreen, remember?), but no visible geometry! Does GL even work?<BR>
+ - I got it to display a red sqare, so GL works - but my Camera system doesn't fit in yet.<BR>
+ - I desperately need the OpenGL API documentation, but I can't get online to download it!!!!!<BR>
+ - Looks like I can scrap my precious lighting system<BR>
+ - I have no clue about how to use textures with OpenGL yet.<BR>
+ - The game currently runs with no gfx output. Spooky ;-)<BR>
+ - Wait a minute! I just saw what could've been the first glimpse of the Landscape in GL!<BR>
+<BR>
+X) First glimpses<BR>
+ - YEAH!! I can see the landscape!<BR>
+   It's still flatshaded (no lighting yet) and without textures. However I can dispay the WHOLE MAP... at >90 FPS!!!!!!!!<BR>
+<BR>
+X) Researched OpenGL Texturing<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap27.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap27.jpg" border=0></a> (The first OpenGL screenshot!)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="27">
+<font color=#FFFFFF size=+1>
+Day 27<BR>
+21.2.2000<BR>
+------------<BR>
+</font>
+X) Got the camera perspective to work propery<BR>
+ - Looks odd in all these rainbow colors ;-)<BR>
+<BR>
+X) Textures!!!<BR>
+ - Only one fixed texture, and I can't get it to use several textures.<BR>
+ - Lighting works, but doesn't look that good.<BR>
+ - My guess is that I'm at the limit of the Voodoo3's OpenGL implementation<BR>
+<BR>
+X) Multiple textures work!<BR>
+ - ...really slooooow on my V3<BR>
+ - I just phoned my tech service and arranged a deal for an Asus V-6600 GeForce 256 card.<BR>
+ - The lightsource should be translated according to the viewer's position.<BR>
+ - I just got mipmapping up and running, looks pretty good.<BR>
+ - Fixed a color error<BR>
+ - No transparency yet, but I've seen other OpenGL programs displaying it correctly on my V3 so I'll do further research.<BR>
+ - Implemented self-illuminating textures (for lasers and such)<BR>
+<BR>
+X) Transparent Surfaces work!<BR>
+ - I'm cheating a little: I don't take measures to properly sort transparent faces :-)<BR>
+ - Next: particles...<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap29.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap29.jpg" border=0></a> (A bit dark...)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="28">
+<font color=#FFFFFF size=+1>
+Day 28<BR>
+22.2.2000<BR>
+------------<BR>
+</font>
+X) Learned OpenGL<BR>
+ - They should really write a better manual. At least one as good as the Glide manuals ;-)<BR>
+<BR>
+X) Fixed light intensity<BR>
+ - Today I learned that OpenGL is not restricted to 0.0 to 1.0 light intensity values... duh...<BR>
+ - I'm afraid I will have to use my own software transformations to rotate the light...<BR>
+   ... therefore adding local lighting effects will be a breeze.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="29">
+<font color=#FFFFFF size=+1>
+Day 29<BR>
+23.2.2000<BR>
+------------<BR>
+</font>
+X) Added proper GL initialisation code<BR>
+ - thanks to Jeff Molofee (http://nehe.gamedev.net) for the sourcecode<BR>
+<BR>
+X) Something's wrong with the particles<BR>
+ - They just don't show up.<BR>
+<BR>
+X) Wrote dynamic light handler<BR>
+ - It works in OpenGL only, but what the hell...<BR>
+ - There's still something wrong with the light coordinate rotations, but I don't have<BR>
+   fast enough r_speed to be able to clearly see what's wrong.<BR>
+<BR>
+X) Fixed camera setup for OpenGL<BR>
+ - I now use native OpenGL calls for camera position instead of GLU<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap30.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap30.jpg" border=0></a> (Spectacular OpenGL lighting)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="30">
+<font color=#FFFFFF size=+1>
+Day 30<BR>
+26.2.2000<BR>
+------------<BR>
+</font>
+X) Finally got my GeForce card
+
+X) Worked on GL fog, lighting and variable range-of-vision
+ - I'm still not satisfied with the overall look, and the light positions are still messed up
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="31">
+<font color=#FFFFFF size=+1>
+Day 31<BR>
+27.2.2000<BR>
+------------<BR>
+</font>
+X) Fixed variable range-of-vision<BR>
+ - I discovered that I accidentally rendered the WHOLE MAP, thus the slow r_speed!!!<BR>
+   Hehe, "ow man" I thought, "even BZFlag runs faster" ;-)<BR>
+ - The face reduction code can also be used for the Glide renderer, so there's room for improvement too.<BR>
+<BR>
+X) Packed up and moved back to Vienna again.<BR>
+ - Three words: *pant* *pant* *pant*<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="32">
+<font color=#FFFFFF size=+1>
+Day 32<BR>
+12.3.2000<BR>
+------------<BR>
+</font>
+X) Another long break<BR>
+<BR>
+X) First glimpses of particles!<BR>
+ - The rendering works, but the position isn't right...<BR>
+<BR>
+X) Positional lighting works<BR>
+ - It's a bit too bright right now.<BR>
+ - I added lights to all ship and AAA laser projectiles.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="33">
+<font color=#FFFFFF size=+1>
+Day 33<BR>
+30.3.2000<BR>
+------------<BR>
+</font>
+X) Fixed Particle positions<BR>
+ - I had to hack the screen coordinates together because Glide used to have <BR>
+   primitive 180 degree FOV and OpenGL now has a more realistic 60 degree FOV.<BR>
+ - "Invisible" Particles are still being drawn, which looks confusing sometimes...<BR>
+<BR>
+X) Ported HUD drawing code to OpenGL<BR>
+<BR>
+X) Fixed Invisible Particles<BR>
+ - Now almost everything looks correct!!<BR>
+<BR>
+X) Ported Text drawing code to OpenGL<BR>
+<BR>
+X) Started working on the Map<BR>
+ - Currently it's texture-based. But this is too slow so I'll switch to point drawing soon.<BR>
+<BR>
+X) Released public demo 1.2<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="34">
+<font color=#FFFFFF size=+1>
+Day 34<BR>
+14.4.2000<BR>
+------------<BR>
+</font>
+X) Moved my computer to Boeheimkirchen again for the easter holidays.<BR>
+ - I'll have approx. 1 week which I will spend on Deranged Raid<BR>
+<BR>
+X) Created Light Missile Tank mesh<BR>
+ - It's the first in a series of ground vehicles!!<BR>
+ - This tank is able to fire volleys of unguided missiles.<BR>
+ - I'll keep this a secret until the next demo (1.3) I dunno if I am able to add "realistic"<BR>
+   physics to this, most likely it will have a very simplified behaviour to emphasize fun.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="35">
+<font color=#FFFFFF size=+1>
+Day 35<BR>
+17.4.2000<BR>
+------------<BR>
+</font>
+X) Begun code split<BR>
+ - What's a code split? Well, I'm doing this so you only have to compile the libs you really need. In short: no need for glide2x.dll anymore when you're running the OpenGL executable.<BR>
+ - Finished code split. Now there are two projects for Glide and OpenGL, yet only one DerangedRaid.c source.<BR>
+<BR>
+X) Textured Light Tank<BR>
+ - ...and fixed a couple o' GL texture bux while I was at it.<BR>
+ - Don't blame me for the childish tank mesh. I never claimed to be a 3d artist.<BR>
+   But then, BZFlag doesn't have very "accurate" tank meshes too, and still it's a fun game.<BR>
+<BR>
+X) Begun coding tank driving behaviour<BR>
+ - It's just prodding along the ground for now.<BR>
+ - The AI has to be altered too, to avoid driving through objects<BR>
+ - The "dive" code must not be executed for Vehicles!!<BR>
+ - For some reason, tanks don't fire missiles correctly.<BR>
+ - They shouldn't be able to fire lasers too.<BR>
+ - My math book tells me that I'll need to build a "numerical total differential equation"<BR>
+   for the vehicles to roll and pitch according to the angle of the landscape it's driving on.<BR>
+   I say I'll just hack together a quick and painless solution instead ;-)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="36">
+<font color=#FFFFFF size=+1>
+Day 36<BR>
+21.4.2000<BR>
+------------<BR>
+</font>
+X) Worked on Tank physics<BR>
+ - Doesn't work yet<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="37">
+<font color=#FFFFFF size=+1>
+Day 37<BR>
+22.4.2000<BR>
+------------<BR>
+</font>
+X) Worked on Tank physics<BR>
+ - Still no luck, acos() hangs!!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="38">
+<font color=#FFFFFF size=+1>
+Day 38<BR>
+23.4.2000<BR>
+------------<BR>
+</font>
+X) Coded Sky<BR>
+ - It consists of 2 spheres with fractal noise on them.<BR>
+   (I know of so many games with "skyplanes" and "skyboxes" so I wanted to do something different here...)<BR>
+ - The fractal sky texture doesn't wrap yet, which it REALLY should!!<BR>
+ - Fixed sky wrap<BR>
+<BR>
+X) Added dumbfire missile<BR>
+ - This missile is very fast, you can load lots of them on your ship and their fire rate is<BR>
+   very fast. Therefore they aren't guided in any way.<BR>
+<BR>
+X) Coded missile loadout restrictions<BR>
+ - Your ship can hold either 10 guided missiles, 20 dumb missiles or 2 marker missiles.<BR>
+<BR>
+X) Modified vehicle hitpoints<BR>
+ - The Tank has weaker shields but tougher hull. Things are just the other way 'round for the ship.<BR>
+<BR>
+X) Worked on dynamic lighting<BR>
+ - For some reason, the thing acts up: laser lights erroneously illuminate far-away faces too!<BR>
+<BR>
+X) Discovered a new bug in the texture editor<BR>
+ - But I won't fix it unless I have to texture another object<BR>
+<BR>
+X) Fixed the map display<BR>
+ - Yeehaw!! Finally, it works!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap33.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap33.jpg" border=0></a> (Morning Skyline)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap34.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap34.jpg" border=0></a> (Evening Skyline)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap35.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap35.jpg" border=0></a> (And the final result)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap36.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap36.jpg" border=0></a> (The secret surprise: GROUND VEHICLES!)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap37.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap37.jpg" border=0></a> (A Tank firing a volley of dumbfire missiles)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="39">
+<font color=#FFFFFF size=+1>
+Day 39<BR>
+24.4.2000<BR>
+------------<BR>
+</font>
+X) Coded Pause-button<BR>
+ - I can now halt the action and move the camera around to make awesome screenshots!<BR>
+<BR>
+X) Worked on tank movement<BR>
+ - It now works for movements along x and z axis, but I have yet to take the tank's yaw into account<BR>
+ - I'm struggling with it... This is a tough problem. I'm at 15h debug time just for this stuff.<BR>
+<BR>
+X) Started working on blended terrain textures<BR>
+ - Say bye-bye to that dumb repeating pattern on the floor ;-)<BR>
+ - I can't seem to find a blending function that works...<BR>
+
+
+
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

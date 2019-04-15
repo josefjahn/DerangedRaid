@@ -1,0 +1,438 @@
+============================
+Deranged Raid Network Code
+
+============================
+
+Version: Draft v1.3
+Author: Werewolf
+
+============================
+
+
+
+General Network topology:
+-------------------------
+
+The client has to perform the following network tasks:
+x) Request a connection to the game server
+x) Compile all client-side objects into a data stream and send it to the server
+x) Receive network-side object data from the server and add it to the local game.
+
+While the client's network tasks are rather simple, the server has quite a lot to do:
+x) Accept incoming connections from joining players
+x) Keep a database of ALL networked objects, including his own objects (i.e. of the player playing at the server machine)
+x) Decide on what to send to each single client, based on the client's current field of vision and stuff...
+x) Send custom data updates to every client, minimizing used bandwidth and maximizing useful data throughput
+
+In this client-server-architecture, clients just send data about their owned objects (the player's ship, own fired lasers and missiles, etc.) to the server. The Server get this kind of data from all clients. The Server then sends each client a block of information containing only the most neccessary objects. For example: If a client can't see an object, position updates of this object won't be sent to the client. This also applies for special effects. Some things like Daytime updates have global effects, hence will be sent out to all clients.
+
+This technique ensures that client-side bandwidth requirements are at a minimum. Therefore, the server needs both much bandwidth and a lot of CPU power. The amount of CPU and Network overhead increases by linear proportions with each connected client.
+
+
+
+Storing Network Objects:
+------------------------
+
+Every object on a client has a single, unchanging Object ID which remains valid throughout the life of the attached object. If the object is deleted, the object ID is free to be used again.
+This gives us the possibiliy to easily manage all objects of all clients on a server. For single player, only the object ID is interesting. For the network code, a second ID becomes interesting too: the owning client's ID. 
+Let's say a client with the client ID 2 fires a laser. In our example, the visible object gets the object ID 16. That's enough for the game to manage the object, but not enough for a network game. When the client announces the creation of this object to the server, the server basically just creates a laser beam too (using the standard AddObject function!), assigning it whatever local object ID is available (let's assume this to be 85). However, the server adds 2 additional informations to the object's properties, the owning client's ID (which is 2) and the object's ID on it's home client (the owning client gave the laser beam the object ID 16).
+
+On the Home Client (client ID 2), all we have is this:
+Objects[16].ID=16; (Yes that looks pretty obsolete. But we need this, since deleted objects are set to -1 here)
+
+On the server (client ID 0), we get this:
+Objects[85].ID=85;
+Objects[85].OwningNetworkClient=2;
+Objects[85].IDAtOwningClient=16;
+
+If the server tells an other client (let's say client 3) about this object, client 3 may just happen to have object ID 9 free for use, assigning it to the new network object:
+Objects[9].ID=9;
+Objects[9].OwningNetworkClient=2;
+Objects[9].IDAtOwningClient=16;
+
+Now the server can proceed to update the laser beam with each frame. Whenever the owning client tells the server something new about the laser beam, the server overwrites it's own position data of the object, replacing it with the owning client's version of the story. The whole affair is being sent to all clients that can see the laser beam on their screen. If the laser beam hits anything, the client sends a damage-command to the server, which in turn damages the object on every connected client. That way the other clients don't have to know anything about that laser beam at all if they don't see it; if we secretly blew someone's base to heaven, the victim will know about it 
+
+By knowing both the owning client ID AND the object ID as seen from the home client, the server and all clients know exactly which object is which. There's no "special Array" or anything, we just use the AddObject function, and tag the object with the additional network ID stuff.
+
+
+
+Special cases of object visibility:
+-----------------------------------
+
+Since we don't neccessarily send ALL clients information about ALL the objects we have on the network, there are some special situations which need to be taken care of.
+Lets assume Player A fires a missile at Player B, while being out of visible range. Player A's computer will tell the server about the fired missile, sure. But the server will check if Player B can see the missile. And since he can't, he won't be notified by the server. Here, to be "notified" means that the server sends a command to the client that triggers the execution of the AddObject function.
+
+Now, what happens if the missile eventually comes within visible range of Player B? If we don't check on that, the client will suddenly receive data about a network object that he hasn't created yet. Spooky, huh? Not really. We just have to have the server send an "AddObject" command to the client, passing the latest coordinates of the missile as starting coordinates. That way it looks to the client as if the missile has just been fired.
+
+Same goes for objects leaving the visible range of a client. Since the server knows that the object is no longer in sight of the client, he would just stop sending data about it to the client. Client-side, the object would continue to do what it did, forever. Missiles would keep flying through the terrain, for example.
+That means that the server has to send a DeleteObject-command to the client. If the object comes into sight again, the client gets an AddOject-command again.
+
+So the server has to keep track when an object comes into range of a client and when it leaves visible range again. What could be better suited than another array to simply write this into? Better yet, each object could carry one of these arrays around with it.
+
+Objects[85].isVisibleToClient[0..max_client_ID]=FXTRUE;
+Objects[85].isVisibleToClient[0..max_client_ID]=FXFALSE; //you get the idea
+
+The server should do something like this:
+
+for (i=0;i<=maxClients;i++)
+if (Client[i].isActive)
+{
+if (GetDistance(ObjectID, i) < maxvdist)
+{
+//If we are within visible range, but weren't on the last check,
+//tell the client to add the object
+if (Objects[ObjectID].isVisibleToClient[i]==FXFALSE)
+{
+Objects[ObjectID].isVisibleToClient[i]=FXTRUE;
+Network_AddCommand(NETWORK_COMMAND_ADDOBJECT, ObjectID);
+}
+}
+else
+{
+//If we just lost eye contact with the object, tell the client
+//to remove the object from it's array.
+if (Objects[ObjectID].isVisibleToClient[i]==FXTRUE)
+{
+Objects[ObjectID].isVisibleToClient[i]=FXFALSE;
+Network_AddCommand(NETWORK_COMMAND_DELETEOBJECT, ObjectID);
+}
+}
+}
+
+In short: When an object is created locally, the other clients receive the AddObject command ONLY upon having it in visual range. The object remains alive on the server until the client tells the server to really destroy it. But for the other clients, the object can be created and destroyed many times, depending on if it is visible or not.
+
+That is why we need a special "Send Score" command to differentiate between objects that are just temporarily invisible, and objects that are actually destroyed.
+
+
+
+Number-To-String conversion:
+----------------------------
+
+float-precision variables have to be converted into a fixed-length 
+
+float:
+12345678.123f (8 digits before comma, 3 digits after comma, total of 13 chars inlc. comma)
+Small values are "filled" with leading zeroes, so that all floats are converted into strings of fixed lenght
+
+integer:
+-65535 (6 chars, "-" replaced with "0" if not negative)
+
+string:
+Strings are treated in a special way, because the string lenght of, for example, player names are not constant.
+When a string is being sent, the data looks like this: "019This is an example"
+A 3-character integer number in front of the string contains the lenght of the following text data.
+
+
+Packet Data Layout:
+-------------------
+
+[Denominator][Numeric Data Block][Denominator][Numeric Data Block]......etc...
+
+
+Denominators are short one-char descriptions which tell the receiver what kind of content is transmitted with the Numeric Data Block. The Layout of the Numeric Data Block is also dependend on the Denominators, as different objects/actions transmitted over the network require different information and variables to be sent. Denominators can also be understood as "commands" sent from the game server to the client and vice versa, telling him to do certain things in order to reflect the other player's actions like adding a new laser burst, displaying explosion effects and so on. The Numeric Data Blocks actually act as "parameters" to these commands, containing informations like world coordinates, angles, color information, particle parameters, etc.
+
+
+Denominators are defined as follows:
+
+"1" - Add object
+"2" - Delete Object
+"3" - Update Object (for synchronising player movements)
+
+"4" - Add Particle Emitter (for explosions, satellite blast, smoke...)
+"5" - Delete Particle Emitter
+
+"6" - Add Light
+"7" - Delete Light
+
+"8" - Damage Information (damages an object)
+"9" - Map Information (current weather situation for map, etc.)
+"A" - Daytime (Current game time for synchronised day/night transitions)
+
+"B" - Client ID (acts as packet header during normal operation)
+"C" - Player Joins (Tells the server that a player has joined. Joining client sends this as packet header with his first packet)
+"D" - Player Leaves
+"E" - Assign Client ID (The server sends this to the client during the join phase, assigning him a network-wide valid client ID
+"F" - Chat Message
+"G" - Terrain Setup (Server tells the clients things like the random seed and how the terrain should look like)
+"H" - Game Setup (Server assigns the player to a team, in case auto-balance is enabled)
+
+
+
+
+Numeric Data Blocks are defined as follows:
+
+
+x) Chat Message Data Block:
+
+Layout: DENOMINATOR_CHAT
+int ListeningTeam;
+string ChatMessage;
+
+Additional Description: If the Receiving Team ID is set to -1, the message will be heard by everyone.
+
+Example Data (sent without spaces): "-00001 014Hello Everyone"
+
+
+x) Client ID Data Block:
+
+Layout: DENOMIMATOR_CLIENTID
+int ClientID;
+
+Additional Description: This acts as a packet header during normal operation (not during game join!)
+
+Example Data: "000004"
+
+
+x) Join Request Data Block:
+
+Layout: DENOMINATOR_JOINREQUEST
+int RemoteVersion;
+string PlayerName;
+REPLY WITH DENOMINATOR_ASSIGN_CLIENTID
+BROADCAST DENOMINATOR_PLAYERJOIN
+
+Additional Description: As soon as a TCP/IP connection is established, the client sends this information to the server, thereby requesting to join the multiplayer game. Things like team choice, player vehicle type etc. are client-side choices and are not relevant here. The "player-join-phase" is the only time a packet is sent to the server that does not start with a "Client ID"-type message at the beginning.
+
+Example Data: "000002 008Werewolf"
+
+
+x) Player Join Data Block:
+
+Layout: DENOMINATOR_PLAYERJOIN
+int ClientId;
+string PlayerName;
+
+Additional Description: Similar to "Join Request", but it is used only by the server to inform all other clients about the joining client - hence it already has a ClientId included.
+
+Example Data: "000005 008Werewolf"
+
+
+x) Player Leave Data Block:
+
+Layout: DENOMINATOR_PLAYERLEAVE
+int QuittingClientID;
+
+Additional Description: Tells the server that a client is going to leave the game. This is broadcasted to the other players as well.
+
+Example Data: "000002"
+
+
+x) Assign Client ID Data Block:
+
+Layout: DENOMIMATOR_ASSIGN_CLIENTID
+int NewClientID;
+
+Additional Description: The server sends this to the client during the join phase, assigning him a network-wide valid client ID. After this, there's no turning back. Either the server rejects the client by returning an "Assign Client ID" message with the ID -1, or he accepts by giving him a network client ID. (ID 0 is always the server itself)
+
+Example Data: "000008"
+
+
+x) Update Object:
+
+Layout: DENOMINATOR_UPD_OBJECT
+int OwningNetworkClient;
+int IDAtOwningClient;
+float Speed;
+float xPos;
+float zPos;
+float Height;
+float Yaw;
+float Pitch;
+float Roll;
+int targetObject;
+int isMarked;
+
+Additional Description: Update an existing object. While most of the time the object movement is determined locally (interpolation), frequent snapshots assure authentic movements across many clients. Used by both client (send local object data to server) and server (broadcast net-object data to clients)
+
+Example Data: None given
+
+
+x) Add Object:
+
+Layout: DENOMINATOR_ADD_OBJECT
+int ObjectType;
+int ObjectMesh;
+int Team;
+int TimeToLive;
+int isAIControlled;
+int isGuided;
+int isVisible;
+int isMarkerMissile;
+float xPos; //Position data only at upd_onject ?
+float zPos;
+float Height;
+float Yaw;
+float Pitch;
+float Roll;
+int firingObject; //May be obsolete
+int OwningNetworkClient;
+int IDAtOwningClient;
+
+Additional Description: Adds a networked object. Used by both client and server again. Also used on objects that have just travelled into visual range for a specific client - The server will send an "AddObject" command to the client, and then continually update the object until it is destroyed or gone out of visual range.
+
+Example Data: None given
+
+
+x) Delete Object:
+
+Layout: DENOMINATOR_DEL_OBJECT
+int OwningClient;
+int IDAtOwningClient;
+
+Additional Description: Remove an object. This should be called whenever a locally owned object is being deleted, so that every client is informed about that. It is also used by the server to remove objects that have travelled out of sight for a specific client.
+
+Example Data: None given
+
+
+x) Map Information Datablock
+
+Layout: DENOMINATE_MAPINFORMATION
+int WeatherType;
+int WeatherPrecipitation;
+float PrecipitationStrength;
+int ThunderAndLightning;
+
+Additional Description: Updates things like Weather Situation, and everything else (except Time Of Day) about the map that changes throughout the game
+
+Example Data: None given
+
+
+x) Terrain Setup Datablock
+
+Layout: DENOMINATE_TERRAINSETUP
+int RandomSeed;
+int TerrainType;
+int WaterLevel;
+
+Additional Description: Transmits terrain type and random seed
+
+Example Data: None given
+
+
+x) Game Setup Datablock
+
+Layout: DENOMINATE_GAMESETUP
+
+Additional Description: Used by the client to join a team, or by the Server to assign a player to a team in case auto-balance is enabled.
+
+Example Data: None given
+
+
+x) Daytime Datablock
+
+Layout: DENOMINATE_DAYTIME
+int TimeOfDay;
+
+Additional Description: Used for syncing the client's game time to the server. This affects sun position, coloring, etc.
+
+Example Data: None given
+
+
+x) Damage Information Datablock
+
+Layout: DENOMINATE_DAMAGEINFORMATION
+int OwningClient;
+int IDAtOwningClient;
+int AppliedDamage;
+
+Additional Description: Damages an Object. Since the clients to all the collision checking for their objects, they inform the server about hits.
+
+Example Data: None given
+
+
+x) Heartbeat Datablock
+
+Layout: DENOMINATE_HEARTBEAT
+string MyServerAddress
+string MyServerName
+int MaxClients
+int CurClients
+int Version
+
+Additional Description: The server periodically informs the master server about his status. Used ONLY by the server and adressed to the master server.
+
+Example Data: None given
+
+
+x) List Request Datablock
+
+Layout: DENOMINATE_LISTREQUEST
+
+Additional Description: Clients use this to request a list of all available internet game servers. Only sent to the master server.
+
+Example Data: None given
+
+
+x) List Entry Datablock
+
+Layout: DENOMINATE_LISTENTRY
+string ServerAddress
+string ServerName
+int MaxClients
+int CurClients
+int Version
+
+Additional Description: This is the master server's reply to a client's list request. Each line of the list comes separated by such a denominator. The end of the list is signalled with a "Master Reply" denominator.
+
+Example Data: None given
+
+
+x) Master Reply Datablock
+
+Layout: DENOMINATE_MASTERREPLY
+string Message
+
+Additional Description: The master server sends this for communication information. Currently, only the key "Done!" is defined, and marks the end of a transmitted serverlist.
+
+Example Data: "Done!"
+
+
+
+
+
+
+
+
+
+
+
+x) Add Light Datablock
+
+Layout: DENOMINATE_ADD_LIGHT
+
+Additional Description: Add a light to the scene. Used in conjunction with the ADD_OBJECT denominator on several light-emitting objects. Not currently used.
+
+Example Data: None given
+
+
+x) Delete Light Datablock
+
+Layout: DENOMINATE_DEL_LIGHT
+
+Additional Description: Removes a light from the scene. Not currently used.
+
+Example Data: None given
+
+
+x) Add Particle Emitter Datablock
+
+Layout: DENOMINATE_ADD_PARTICLEEMITTER
+
+Additional Description: Add a Particle Emitter to the scene. Not currently used.
+
+Example Data: None given
+
+
+x) Delete Particle Emitter Datablock
+
+Layout: DENOMINATE_DEL_PARTICLEEMITTER
+
+Additional Description: Remove a Particle Emitter from the scene. Not currently used.
+
+Example Data: None given
+
+
+
+
+------------------------------------------------------------- 
+

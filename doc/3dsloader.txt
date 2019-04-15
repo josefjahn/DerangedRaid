@@ -1,0 +1,554 @@
+// Loads a object from a 'FILE_3DS' resource from the executable 
+// and positions it at 0,0,0
+// the loader can only load 3ds files for the moment
+// The 3ds loader loads a entire scene with multiple objects
+// and makes these objects to a big object.
+fxeObject * fxeObjectLoadFromExe(int ResID, int FileFormat,
+  float ScaleFactor, int UseTextures)
+{
+
+  unsigned long size;
+  H3dsScene *pScene;
+  fxeObject  *pObject;
+  int Loop, Loop2;
+  int TotalPolys, TotalVertices;
+  int CurrVertex, CurrPolygon;
+  int VertexIndex;
+  H3dsScene *pNewScene;
+  int NVB;
+  H3dsMaterial *pMaterial;
+  char TexFilename[80];
+  int n;
+  fxeTextureHandle TH;
+  int NPB;
+  int PIndex;
+  int FoundMap;
+  unsigned short Swap;
+	void* ObjMem;
+
+  switch(FileFormat)
+  {
+    case OBJECT_3DS:
+
+      ObjMem = fxeLoadResource(ResID,"FILE_3DS",&size);
+			if (ObjMem == NULL)
+				return NULL;
+
+      pScene = HRead3dsScene(ObjMem,1,size);
+      if (pScene == 0)
+        return NULL;
+
+      // Now we should have a pointer to the scene in pScene
+
+      pObject = (fxeObject*)FxMalloc(sizeof(fxeObject));
+
+      TotalPolys = 0;
+      TotalVertices= 0;
+
+      
+
+      for (Loop=0; Loop<pScene->meshobjs; Loop++)
+      {
+        TotalPolys += (int)pScene->meshobjlist[Loop].faces;
+        TotalVertices += (int)pScene->meshobjlist[Loop].verts;
+      }
+
+
+
+      // Now we creates a 3ds scene with only 1 object - we takes all
+      // objects in the meshobjlist of the loaded scene
+      // and sets them in one object only in the new scene - this is just
+      // to make the code easier.
+
+      pNewScene = (H3dsScene*)FxMalloc(sizeof(H3dsScene*));
+      pNewScene->meshobjs = 1;
+      pNewScene->meshobjlist = (H3dsMeshObj*)FxMalloc(sizeof(H3dsMeshObj));
+      pNewScene->meshobjlist[0].verts = TotalVertices;
+      pNewScene->meshobjlist[0].faces = TotalPolys;
+      pNewScene->meshobjlist[0].maps = TotalVertices;
+      pNewScene->meshobjlist[0].facelist =
+        (H3dsFace*)FxMalloc(sizeof(H3dsFace)*TotalPolys);
+      pNewScene->meshobjlist[0].vertlist =
+        (H3dsVert*)FxMalloc(sizeof(H3dsVert)*TotalVertices);
+      pNewScene->meshobjlist[0].maplist =
+        (H3dsMap*)FxMalloc(sizeof(H3dsMap)*TotalVertices);
+
+      // Copy all vertices and polys from old scene to new scene:
+
+      CurrVertex = 0;
+      CurrPolygon = 0;
+      NVB = 0;
+
+      for (Loop=0; Loop<pScene->meshobjs; Loop++)
+      {
+        for (Loop2=0; Loop2<pScene->meshobjlist[Loop].faces; Loop2++)
+        {
+          pNewScene->meshobjlist[0].facelist[CurrPolygon].p0 =
+            pScene->meshobjlist[Loop].facelist[Loop2].p0+NVB;
+          pNewScene->meshobjlist[0].facelist[CurrPolygon].p1 =
+            pScene->meshobjlist[Loop].facelist[Loop2].p1+NVB;
+          pNewScene->meshobjlist[0].facelist[CurrPolygon].p2 =
+            pScene->meshobjlist[Loop].facelist[Loop2].p2+NVB;
+          pNewScene->meshobjlist[0].facelist[CurrPolygon].flags =
+            pScene->meshobjlist[Loop].facelist[Loop2].flags;
+          CurrPolygon++;
+        }
+
+        for (Loop2=0; Loop2<pScene->meshobjlist[Loop].verts; Loop2++)
+        {
+          pNewScene->meshobjlist[0].vertlist[CurrVertex].x =
+            pScene->meshobjlist[Loop].vertlist[Loop2].x;
+          pNewScene->meshobjlist[0].vertlist[CurrVertex].y =
+            pScene->meshobjlist[Loop].vertlist[Loop2].y;
+          pNewScene->meshobjlist[0].vertlist[CurrVertex].z =
+            pScene->meshobjlist[Loop].vertlist[Loop2].z;
+
+          if (pScene->meshobjlist[Loop].maps != 0)
+          {
+            pNewScene->meshobjlist[0].maplist[CurrVertex].u =
+              pScene->meshobjlist[Loop].maplist[Loop2].u;
+            pNewScene->meshobjlist[0].maplist[CurrVertex].v =
+              pScene->meshobjlist[Loop].maplist[Loop2].v;
+          }
+          CurrVertex++;
+        }
+
+
+
+        NVB += pScene->meshobjlist[Loop].verts;
+      }
+
+      pObject->x = 0.0;
+      pObject->y = 0.0;
+      pObject->z = 0.0;
+
+      pObject->DrawShape = GR_TRIANGLE_FAN;
+
+      pObject->ShadingType = FLAT_SHADING;
+      pObject->Transparent = FXEFALSE;
+      pObject->EnviromentMapped = FXEFALSE;
+      pObject->pPolygonSortList = NULL;
+
+
+      if (UseTextures == FXETRUE)
+        pObject->ObjectType = OBJECT_COMPLETELY_TEXTURED;
+      else
+        pObject->ObjectType = OBJECT_NOT_TEXTURED;
+
+      pObject->LowAccuracyLightning = FXEFALSE;
+
+      pObject->NumPolys = TotalPolys;
+      pObject->NumVertices = TotalVertices;
+
+      pObject->VertexList = (fxeVertex*)FxMalloc(sizeof(fxeVertex)*TotalVertices);
+      pObject->VerticesWorld = (fxeVertex*)FxMalloc(sizeof(fxeVertex)*TotalVertices);
+      pObject->VerticesCamera = (fxeDrawVertex*)FxMalloc(sizeof(fxeDrawVertex)*TotalVertices);
+      pObject->EnviromentVerts = (fxeTextureCoordinate*)
+        FxMalloc(sizeof(fxeTextureCoordinate)*TotalVertices);
+			pObject->VertexNormals = 
+				(fxeVector*)FxMalloc(sizeof(fxeVector)*TotalVertices);
+      pObject->PolygonList = (fxePolygon*)FxMalloc(sizeof(fxePolygon)*TotalPolys);
+      if (pObject->PolygonList == NULL)
+      printf("Not enough memory\n");
+
+
+        for (Loop2=0; Loop2<pNewScene->meshobjlist[0].verts; Loop2++)
+        {
+          pObject->VertexList[Loop2].x =
+            pNewScene->meshobjlist[0].vertlist[Loop2].x;
+          pObject->VertexList[Loop2].y =
+            pNewScene->meshobjlist[0].vertlist[Loop2].y;
+          pObject->VertexList[Loop2].z =
+            pNewScene->meshobjlist[0].vertlist[Loop2].z;
+         
+          pObject->VerticesCamera[Loop2].NumPolys = 0;
+          pObject->VerticesCamera[Loop2].PolygonIndices = NULL;
+        }
+
+
+        for (Loop2=0; Loop2<pNewScene->meshobjlist[0].faces; Loop2++)
+        {
+          pObject->VerticesCamera[pNewScene->meshobjlist[0].facelist[Loop2].p0].
+            NumPolys++;
+
+          pObject->VerticesCamera[pNewScene->meshobjlist[0].facelist[Loop2].p1].
+            NumPolys++;
+
+          pObject->VerticesCamera[pNewScene->meshobjlist[0].facelist[Loop2].p2].
+            NumPolys++;
+        }
+
+
+
+        // allocate memory for all vertices polygonindices:
+        for (Loop2=0; Loop2<pNewScene->meshobjlist[0].verts; Loop2++)
+        {
+          pObject->VerticesCamera[Loop2].PolygonIndices =
+            (fxePolygonIndex*) FxMalloc(sizeof(fxePolygonIndex)*
+            pObject->VerticesCamera[Loop2].NumPolys);
+          pObject->VerticesCamera[Loop2].NumPolys = 0;
+        }
+
+
+
+
+
+        for (Loop2=0; Loop2<pNewScene->meshobjlist[0].faces; Loop2++)
+        {
+          pObject->PolygonList[Loop2].NumVertices = 3;
+
+          pObject->PolygonList[Loop2].VertexIndices =
+            (fxeVertexIndex*)FxMalloc(sizeof(fxeVertexIndex)*3);
+
+          pObject->PolygonList[Loop2].TextureCoordinates =
+            (fxeTextureCoordinate*)FxMalloc(sizeof(fxeTextureCoordinate)*3);
+
+
+          if (pNewScene->meshobjlist[0].facelist[Loop2].flags == 0x07)
+          {
+            // Vertices are given in the opposite order - swap
+            // vertices. Saw this in the source to a 3ds loader.
+
+            Swap = pNewScene->meshobjlist[0].facelist[Loop2].p2;
+
+            pNewScene->meshobjlist[0].facelist[Loop2].p2 =
+              pNewScene->meshobjlist[0].facelist[Loop2].p1;
+
+            pNewScene->meshobjlist[0].facelist[Loop2].p1 = Swap;
+          }
+
+              
+          VertexIndex = pNewScene->meshobjlist[0].facelist[Loop2].p0;
+
+          pObject->PolygonList[Loop2].VertexIndices[0] = VertexIndex;
+
+          pObject->VerticesCamera[VertexIndex].PolygonIndices[
+            (pObject->VerticesCamera[VertexIndex].NumPolys)] = Loop2;
+          pObject->VerticesCamera[VertexIndex].NumPolys++;
+
+          pObject->PolygonList[Loop2].TextureCoordinates[0].u =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].u;
+          pObject->PolygonList[Loop2].TextureCoordinates[0].v =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].v;
+          
+
+
+          VertexIndex = pNewScene->meshobjlist[0].facelist[Loop2].p1;
+
+          pObject->PolygonList[Loop2].VertexIndices[1] = VertexIndex;
+
+          pObject->VerticesCamera[VertexIndex].PolygonIndices[
+            (pObject->VerticesCamera[VertexIndex].NumPolys)] = Loop2;
+          pObject->VerticesCamera[VertexIndex].NumPolys++;
+
+          pObject->PolygonList[Loop2].TextureCoordinates[1].u =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].u;
+          pObject->PolygonList[Loop2].TextureCoordinates[1].v =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].v;
+
+
+          VertexIndex = pNewScene->meshobjlist[0].facelist[Loop2].p2;
+
+          pObject->PolygonList[Loop2].VertexIndices[2] = VertexIndex;
+
+          pObject->VerticesCamera[VertexIndex].PolygonIndices[
+            (pObject->VerticesCamera[VertexIndex].NumPolys)] = Loop2;
+          pObject->VerticesCamera[VertexIndex].NumPolys++;
+
+          pObject->PolygonList[Loop2].TextureCoordinates[2].u =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].u;
+          pObject->PolygonList[Loop2].TextureCoordinates[2].v =
+            pNewScene->meshobjlist[0].maplist[VertexIndex].v;
+
+          // Allocate memory for clipped vertices: (very many for
+          // the moment, when you clip a triangle to six planes
+          // I don't know how many new vertices can be added so it's just
+          // to be sure and we got a HUGE amount of memory in win32
+          // anyway...)
+
+          //pObject->PolygonList[Loop2].ClippedVertices =
+          //  (fxeDrawVertex*)FxMalloc(sizeof(fxeDrawVertex)*10);
+          //pObject->PolygonList[Loop2].ClippedEnvVer =
+          //  (fxeTextureCoordinate*)FxMalloc(sizeof(fxeTextureCoordinate)*10);
+
+          pObject->PolygonList[Loop2].TexMode = NOT_TEXTURED;
+          pObject->PolygonList[Loop2].Transparent = FXEFALSE;
+
+          pObject->PolygonList[Loop2].DoubleSided = FXEFALSE;
+
+          pObject->PolygonList[Loop2].PolygonRadius =
+            GetPolygonRadius(&(pObject->PolygonList[Loop2]),pObject);
+
+          pObject->PolygonList[Loop2].DiffuseColor.r = 1.0f;
+          pObject->PolygonList[Loop2].DiffuseColor.g = 1.0f;
+          pObject->PolygonList[Loop2].DiffuseColor.b = 1.0f;
+          
+					pObject->PolygonList[Loop2].AmbientColor.r = 0.0f;
+          pObject->PolygonList[Loop2].AmbientColor.g = 0.0f;
+          pObject->PolygonList[Loop2].AmbientColor.b = 0.0f;
+				
+
+        }
+
+
+
+        if (UseTextures == FXETRUE)
+        {
+
+        FoundMap = FXEFALSE;
+
+        // go through all objects, load textures needed
+
+        // Load all textures:
+
+        pMaterial = &pScene->Materials;
+
+        while (pMaterial != NULL)
+        {
+          if (pMaterial->TexFilename != NULL)
+          {
+            n = 0;
+            while(pMaterial->TexFilename[n] != '.')
+            {
+              TexFilename[n] = pMaterial->TexFilename[n];
+              n++;
+            }
+            TexFilename[n] = '.';
+            TexFilename[n+1] = '3';
+            TexFilename[n+2] = 'd';
+            TexFilename[n+3] = 'f';
+            TexFilename[n+4] = 0;
+            pMaterial->TH = (void*)fxeTextureLoad(TexFilename,FXE_TEXTURE_MAP);
+            if (pMaterial->TH != NULL)
+              FoundMap = FXETRUE;
+          }
+          pMaterial = pMaterial->Next;
+        }
+
+        if (FoundMap == FXEFALSE)
+          pObject->ObjectType = OBJECT_NOT_TEXTURED;
+
+        NPB = 0;
+
+        for (Loop=0;Loop<pScene->meshobjs;Loop++)
+        {
+          pScene->meshobjlist[Loop].CurrFaceMaterial =
+            &pScene->meshobjlist[Loop].FaceMaterials;
+
+          while (pScene->meshobjlist[Loop].CurrFaceMaterial != NULL)
+          {
+            if (pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial != NULL)
+            {
+              TH = pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->TH;
+
+                if (pScene->meshobjlist[Loop].CurrFaceMaterial->nPolygons != 0)
+                {
+
+                  for (Loop2=0;Loop2<
+                    pScene->meshobjlist[Loop].CurrFaceMaterial->nPolygons;
+                    Loop2++)
+                  {
+                  
+                    PIndex =
+                      pScene->meshobjlist[Loop].
+                      CurrFaceMaterial->PolygonIndices[Loop2];
+
+                    pObject->PolygonList[PIndex+NPB].TextureHandle = TH;
+
+                    pObject->PolygonList[PIndex+NPB].DoubleSided =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											DoubleSided;
+
+										pObject->PolygonList[PIndex+NPB].AmbientColor.r =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											ambient.red;
+
+										pObject->PolygonList[PIndex+NPB].AmbientColor.g =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											ambient.green;
+
+										pObject->PolygonList[PIndex+NPB].AmbientColor.b =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											ambient.blue;
+										
+										pObject->PolygonList[PIndex+NPB].DiffuseColor.r =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											diffuse.red;
+
+										pObject->PolygonList[PIndex+NPB].DiffuseColor.g =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											diffuse.green;
+
+										pObject->PolygonList[PIndex+NPB].DiffuseColor.b =
+											pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											diffuse.blue;
+
+										pObject->PolygonList[PIndex+NPB].AlphaLevel =
+											(unsigned char)(pScene->meshobjlist[Loop].CurrFaceMaterial->pMaterial->
+											alpha * 255.0f);
+
+                    if (TH != NULL)
+                      pObject->PolygonList[PIndex+NPB].TexMode = TEXTURE_MAPPED;
+                  }
+                }
+            }
+            pScene->meshobjlist[Loop].CurrFaceMaterial =
+              pScene->meshobjlist[Loop].CurrFaceMaterial->Next;
+          }
+          NPB += pScene->meshobjlist[Loop].faces;
+        }
+        }
+
+        else
+          pObject->ObjectType = OBJECT_NOT_TEXTURED;
+
+
+
+        // Now destroy the new created 3ds scene:
+        free(pNewScene->meshobjlist[0].vertlist);
+        free(pNewScene->meshobjlist[0].facelist);
+        free(pNewScene->meshobjlist[0].maplist);
+        free(pNewScene->meshobjlist);
+        free(pNewScene);
+
+ 
+      // Center the object at 0,0,0 so rotation works properly:
+
+      CenterObject(pObject);
+
+
+
+      pObject->ObjectRadius = GetMaximumRadius(pObject);
+
+      if (ScaleFactor != 0)
+      {
+        ScaleObject(pObject,ScaleFactor);
+      }
+
+			// Precalculate normals for all polygons in object:
+
+			CalculateNormalsLocal(pObject);
+			NormalizeNormals(pObject);
+
+			// Precalculate normals for all vertices in object:
+
+			PrecalculateVertexNormals(pObject);
+       
+
+    HFree3dsScene(pScene);
+    return pObject;
+  }
+  return NULL;
+
+}
+
+
+void CenterObject(fxeObject *pObject)
+{
+  int Loop;
+  float ax,ay,az;
+  float minx,miny,minz,maxx,maxy,maxz;
+  
+  // Calculate average x,y,z;
+
+  minx = 65535;
+  miny = 65535;
+  minz = 65535;
+  maxx = -65535;
+  maxy = -65535;
+  maxz = -65535;
+
+  for (Loop=0;Loop<pObject->NumVertices;Loop++)
+  {
+    if (pObject->VertexList[Loop].x < minx)
+      minx = pObject->VertexList[Loop].x;
+    if (pObject->VertexList[Loop].x > maxx)
+      maxx = pObject->VertexList[Loop].x;
+
+    if (pObject->VertexList[Loop].y < miny)
+      miny = pObject->VertexList[Loop].y;
+    if (pObject->VertexList[Loop].y > maxy)
+      maxy = pObject->VertexList[Loop].y;
+
+    if (pObject->VertexList[Loop].z < minz)
+      minz = pObject->VertexList[Loop].z;
+    if (pObject->VertexList[Loop].z > maxz)
+      maxz = pObject->VertexList[Loop].z;
+  }
+
+  ax = (minx+maxx)/2;
+  ay = (miny+maxy)/2;
+  az = (minz+maxz)/2;
+
+  // Subtract the average x from all vertices x component
+  // Subtract the average y from all vertices y component
+  // Subtract the average z from all vertices z component
+
+  for (Loop=0;Loop<pObject->NumVertices;Loop++)
+  {
+    pObject->VertexList[Loop].x -= ax;
+    pObject->VertexList[Loop].y -= ay;
+    pObject->VertexList[Loop].z -= az;
+  }
+}
+
+// Scales a object so that it's maximum radius is ScaleFactor
+
+void ScaleObject(fxeObject *pObject, float ScaleFactor)
+{
+  int Loop;
+
+  // Divide every vertex by current object radius so that
+  // we get all vertices x,y,z values between 0..1
+
+  for (Loop=0;Loop<pObject->NumVertices;Loop++)
+  {
+    pObject->VertexList[Loop].x /= pObject->ObjectRadius;
+    pObject->VertexList[Loop].y /= pObject->ObjectRadius;
+    pObject->VertexList[Loop].z /= pObject->ObjectRadius;
+  }
+
+  pObject->ObjectRadius = ScaleFactor;
+
+
+  // Now we can multiply every vertex's x,y,z value with ScaleFactor:
+  
+  for (Loop=0;Loop<pObject->NumVertices;Loop++)
+  {
+    pObject->VertexList[Loop].x *= ScaleFactor;
+    pObject->VertexList[Loop].y *= ScaleFactor;
+    pObject->VertexList[Loop].z *= ScaleFactor;
+  }
+
+  // We must setup all polygons radius too:
+  for (Loop=0;Loop<pObject->NumPolys;Loop++)
+  {
+
+    pObject->PolygonList[Loop].PolygonRadius =
+      GetPolygonRadius(&(pObject->PolygonList[Loop]),pObject);
+  }
+
+
+}
+
+
+// Object related functions:
+
+int fxeObjectDetectCollisionLandscape(fxeObjectHandle OH,
+	fxeLandscapesParentHandle LspH)
+{
+	fxeVector DistanceVector;
+	float Distance;
+	float Height;
+
+	Height = fxeLandscapeGetHeightXZ(LspH,OH->x,OH->z);
+	DistanceVector.x = 0.0f;
+	DistanceVector.y = Height - OH->y;
+	DistanceVector.z = 0.0f;
+
+	Distance =	VectorLenght(&DistanceVector);
+	Distance = Distance - OH->ObjectRadius;
+	if (Distance <= 0)
+		return FXETRUE;
+	return FXEFALSE;
+}

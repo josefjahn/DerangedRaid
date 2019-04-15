@@ -1,0 +1,161 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 120 - ?</font><br><br>
+
+<font color=#FFFFFF size=+1>
+Day 120<BR>
+31.7.2001<BR>
+------------<BR>
+</font>
+X) Conducted another network test<BR>
+- (on my brother's laptop)<BR>
+- It *almost* worked this time!<BR>
+<BR>
+X) Fixed bug in netcode where the server wouldn't properly inform the clients of his own object IDs
+<BR>
+X) Implemented GetNextAutobalanceTeam()<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 121<BR>
+2.8.2001<BR>
+------------<BR>
+</font>
+X) Added voice taunts to the game<BR>
+- They're being played back on all multiplayer clients<BR>
+- You can easily have your own taunts too<BR>
+- I even wrote a small script parser for this one...<BR>
+<BR>
+X) Fixed ambient 2D sounds<BR>
+- and I finally know how to fix all the other 2D-sounds too<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 122<BR>
+7.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+- I just got the laptop back.<BR>
+- Found out that we need to synchronize the command center positions on join or else the client will freak out. Duh.<BR>
+- Started implementing the terrain/weather/daytime synchronisation.<BR>
+- I'm almost done server-side. Tomorrow I'll work on the client-side code, then we'll do another test run.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 123<BR>
+8.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+- Finished client-side additions<BR>
+- Still some weird behaviour. I'll need more time to look into this..<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 124<BR>
+10.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+- Well no crashes anymore. But I still get ghost objects and stuff, so there's more work to be done<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 125<BR>
+12.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code, AND IT WORKS!<BR>
+- Game joining works<BR>
+- Flying around works, and is displayed correctly!<BR>
+- No "disconnect on quit" yet<BR>
+- No bestowing of object ownership on client quit yet<BR>
+- Guided missiles are erroneously seen as player ships on the other client's screens<BR>
+- Movements still jerky<BR>
+<BR>
+Pictures:<br>
+<a href="http://www.playspoon.com/draid/snap129.jpg"><img src="http://www.playspoon.com/draid/ssnap129.jpg" border=0></a>This is the first shot of the running netcode! The small window is the server, the big one's a client.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 126<BR>
+15.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+- Fixed recursive object deletion<BR>
+- TODO: Damaging and destroying an object isn't properly done on both sides.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 127<BR>
+25.8.2001<BR>
+------------<BR>
+</font>
+X) Fixed a couple of respawn-related bugs<br>
+<br>
+X) Worked on network code<BR>
+- Implemented host game menu<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<font color=#FFFFFF size=+1>
+Day 128<BR>
+26.8.2001<BR>
+------------<BR>
+</font>
+X) Worked on network code<BR>
+- Implemented version number matching<BR>
+
+<BR>
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

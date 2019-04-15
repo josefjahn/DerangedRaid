@@ -1,0 +1,393 @@
+<TITLE>DERANGED RAID / Main</TITLE>
+<A NAME="top">
+
+<!--
+<tscript language="JavaScript">
+if (window != top) top.location.href = location.href;
+</tscript>
+-->
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+<br>
+<font face="Arial,Helvetica" size=5 color=7F7F7F>
+Welcome to Deranged Raid!<br><img src="http://www.playspoon.com/images/opengl1.jpg" align=right halign=right border=0><br>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+<br>
+This is a Flight simulation / RTS genre mix. Development of this game is not yet finished, but all key parts of the game are present. Deranged Raid will update itself via the internet, and this way you'll eventually receive the final version. Deranged Raid is FREEWARE and OPENSOURCE.<br>
+<br>
+If you have questions about the game, feature suggestions or proplem reports, please visit the 
+<a href="http://www.playspoon.com/forums/">Deranged Raid Discussion Forum</a> and post a message there.<br>
+I (Werewolf) can be reached via email at <a href="mailto:werewolf@playspoon.com">werewolf@playspoon.com</a><br>
+
+<br>
+<br>
+</b>
+
+<BR>
+<BR>
+<BR>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Gameplay</font></b></td></tr></table>
+<BR>
+<BR>
+DERANGED RAID is a team game. Each team consists of one or more pilots who pilot<BR>
+their own vehicles. The goal is to destroy the enemy Command Center, while defending<BR>
+your own. One part of the game consists of flying and fighting with your ship, the other<BR>
+part plays like a normal RTS-game: you build structures and defense systems, harvest <BR>
+resources and try to keep the enemy from doing the same.<BR>
+<BR>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Buildings</font></b></td></tr></table><br>
+<br>
+Building is a key part to success. You can choose from a variety of different strategical buildings, 
+depending on your budget.<BR>
+During your flight, you'll notice a colored rectangle on the ground below your ship, which can turn red and green.<BR>
+Green means that you can build there, and red means that you can't. You have to keep a certain distance to other buildings 
+for the rectangle to become green.<BR>
+To actually build, press one of the F1-F6 keys.<BR>
+You'll notice your energy drain will increase depending on the type of building you just ordered.<BR>
+The price of the building will be substracted from your Available Resources counter.
+<br><br>
+
+<table cellspacing=30>
+<tr><td valign=top>
+<a href="draid/commandcenter_big.jpg"><img src="draid/commandcenter.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Command Center / Landing strip<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+<BR>[Price: 15000]<BR>[Energy drain: none]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+This is the main base of operations. If your command center gets destroyed, the game is lost. It serves as landing/takeoff point, as well as ship repair and rearm facility. You don't have to worry about a short enemy attack since this building can take a serious pounding but the Base Commander will alert you when the base <a href="../sounds/basefire.wav">takes fire</a> or even <a href="../sounds/basebackup.wav">structural damage</a>. To make things harder for the enemy, the Command Center is armed with a single laser cannon as well as a guided missile launcher - but you'd better not risk anything.<BR>
+The Command Center is the only building that can withstand a satellite attack.<BR>
+It is estimated that 2 or 3 satellite blasts would be needed to destroy a Command Center<BR>
+You can actually build another command center, but this structure is so expensive that it's unlikely anyone could afford more than two.
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/powerplant_big.jpg"><img src="draid/powerplant.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Power Plant<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 1000]<BR>[Energy production: 1500]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+The standard means of energy production. This building is a "soft target", which means it cannot withstand much damage. Make sure you defend them well, because without power, the defenses are deactivated and the Mines don't produce resources!!
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/mine_big.jpg"><img src="draid/mine.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Mine <BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 1500]<BR>[Energy drain: 400]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+In order to run things, you need energy - but in order to build things, you need resources. Resources are gained by building one or more Mines. the more Mines you have, the more resources you'll receive. Like the Power Plant, you have to keep this building away from enemy gunfire at all costs. This building depends on power too, so make sure you have sufficient energy reserves!
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/sam_big.jpg"><img src="draid/sam.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+SAM-Site (Guided missile defense system)<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 800]<BR>[Energy drain: 500]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+This is a standalone automated missile defense system. It will fire guided missiles at enemy targets in range, including  enemy buildings. It can handle some damage, but it won't hold up multiple bogeys for long.
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/aaa_big.jpg"><img src="draid/aaa.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+AAA-Site (Anti-Aircraft-Artillery)<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 500]<BR>[Energy drain: 300]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+The heart of every base defense. This automatic cannon has an excellent range and can fire at enemy air and ground targets. However, one AAA alone will have a hard time downing an enemy ship. You'll have to use several of them to secure a single objective.
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/satellite_big.jpg"><img src="draid/satellite.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Satellite Uplink (Energy weapon)<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 7000]<BR>[Energy drain: 2000]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+Last but no least, the mass-destruction weapon itself. Scientists have managed to launch a large plasma cannon into space.  By building this structure, you gain access to this orbital weapons platform.<BR>
+Since the satellite itself has no possibility of identifying targets, you have to "tag" enemy objects for the satellite to "see" them. To to this, you must land at the Command Center and load "Marker Missiles" onboard your ship. Unfortunately, you cannot carry any other weapon system together with the marker missiles, which means that you won't be able to fire lasers or guided missiles until your next stop at the Command Center.<BR>
+Now, fly to the target object, and fire a marker missile at it. Note that the marker missiles are UNGUIDED!!<BR>
+As soon as the missile impacts on the target, you'll hear the satellite's confirmation signal, and a countdown will show the time remaining until the satellite is in firing position. When this countdown reaches zero, the plasma cannon fires a powerful beam of enery at the target, annihilating most known structures in a single shot (except the command center)
+</font>
+</td></tr>
+</table>
+
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Game Rules</font></b></td></tr></table>
+<BR>
+<BR>
+Every building (except the Command Center) needs to be powered by<BR>
+Power Plants. One Plant produces 1500 units of energy. If there's not enough power,<BR>
+EVERY building (except the Command Center) will be without power and <BR>
+non-functional. Buildings have to be placed within a certain range of a <BR>
+Power Plant. This range is NOT *too* small - to allow "spreading" of bases.<BR>
+Power Plants can be built everywhere.<BR>
+<BR>
+Building costs resources. Resources are gained by building mines at<BR>
+resource-enriched locations. These locations are visible and "color-tagged".<BR>
+Each Mine produces a certain amount of resources per time.<BR>
+<BR>
+AAA- and SAM-Sites act as automatic defense systems. AAA-Sites rapid-fire<BR>
+laser bolts while SAM-Sites have an unlimited stock of guided missiles.<BR>
+Both Defense systems can be destroyed like any other building by missiles <BR>
+or laser fire.<BR>
+<BR>
+Guided missiles (used by SAM-Sites and the Command Center) have a certain<BR>
+"probability" of hitting a player. They steer automatically, but victims<BR>
+can evade them. The missiles also have a limited flight time after which they<BR>
+just explode<BR>
+<BR>
+<BR>
+<BR>
+
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Controls</font></b></td></tr></table>
+<BR>
+<BR>
+[A]	- Accelerate<BR>
+[Y]	- Deccelerate<BR>
+[LEFT]	- Turn Left<BR>
+[RIGHT]	- Turn Right<BR>
+[UP]	- Nose Down<BR>
+[DOWN]	- Nose Up<BR>
+[L]	- Automatic Landing/Takeoff<BR>
+[CTRL]	- Fire Lasers<BR>
+[SPACE] - Fire Missiles<BR>
+[F1]    - Build POWER PLANT<BR>
+[F2]    - Build MINE<BR>
+[F3]    - Build AAA-SITE<BR>
+[F4]    - Build SAM-SITE<BR>
+[F5]    - Build SATELLITE UPLINK<BR>
+[F6]    - Build COMMAND CENTER<BR>
+<BR>
+<BR>
+<BR>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Controllable Vehicles</font></b></td></tr></table>
+<BR>
+<BR>
+
+
+
+
+<table cellspacing=30>
+<tr><td valign=top>
+<a href="draid/ship1_big.jpg"><img src="draid/ship1.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Light Scout<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 500]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+Lightly armored, this ship was not originally built for air combat. However, it's relative speed and fast turn rates make it ideal for reconnaisance. It's also used by more reckless pilots to tag enemy buildings for the satellite cannon and get out before anyone realizes what hit them.<br>
+However, it can only carry either dumbfire missiles, guided missiles or marker missiles. Advanced weaponry can not be mounted on this ship.
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/ship2_big.jpg"><img src="draid/ship2.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Medium Fighter<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 1000]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+For the mainstay of the fleet, light armor just doesn't do the trick anymore. This design offers a fair compromise between speed, armor and firepower.In addition to the usual weaponry, this ship can also carry the swarm missile.
+</font>
+</td></tr>
+
+<tr><td valign=top>
+<a href="draid/ship3_big.jpg"><img src="draid/ship3.jpg" border=0></a><br>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=FFFFFF>
+Heavy Bomber<BR>
+</font>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[Price: 2000]<BR>
+</font>
+</td><td valign=top>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+If you're rich, you can either spend the money on a new car and drive around taking beautiful babes with you... <br>...or you could annihilate the enemy with this baby. It has the strongest armour of all ships in the fleet, and it's equipped to the teeth with missiles, bombs and even the mighty cruise missile. It's quite slow however, that's why you'll want to make sure to NEVER EVER send it on a attack mission without proper escorts.
+</font>
+</td></tr>
+</table>
+
+<BR>
+Your vehicle may equipped with a shield which protects it from enemy fire.<BR>
+When the shields are drained, the damage will directly affect the hull<BR>
+If the hull is 100% damaged, the player dies (duh).<BR>
+Shields regenerate at a certain rate per time.<BR>
+Hull damage is being repaired by landing at the command center - this<BR>
+also rearms the ship with missiles.<BR>
+<BR>
+Landing is done by pressing "L" while within a certain range of the<BR>
+Command Center. The landing procedure runs automatically.<BR>
+<BR>
+To shoot a guided missile, the player has to press the Secondary Fire <BR>
+button while having the enemy ship within his targeting retice.<BR>
+As soon as the missile has a positive lock on the target, you'll hear a continuous<BR>
+<a href="../sounds/growlock.wav">tone signal</a>, and the targeting retice will turn RED. Press SPACE to fire a missile<BR>
+Lasers are fired with the primary fire button<BR>
+When a player gets killed, he respawns at the Command Center.<BR>
+There may be situations where your plane doesn't explode immediately despite having suffered lethal damage.<br>
+This situation is called "diving" and it means that your ship is "falling down" to the ground. <br>
+If this happens, you won't be able to pull up anymore and the <a href="../sounds/stall.wav">stall horn</a> will go off.<br>
+Be aware that you can still harm your enemy by steering your dying ship into one of his buildings; <br>
+a ship's impact does even more damage than a direct missile hit!<br>
+<BR>
+Here's an explanatory shot of the game's current rudimentary HUD:<br><br>
+<img src="draid/hud.jpg"><br>
+<BR>
+<BR>
+<BR>
+
+
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Missiles</font></b></td></tr></table>
+<BR>
+<BR>
+<a href="draid/missile_big.jpg"><img src="draid/missile.jpg" border=0></a><br>
+<BR>
+Missiles are a key weapon system in Deranged Raid. The most prominent kind are <br>
+guided missiles. A guided missile should aquire a lock before you fire it.<br>
+You can tell when the missile has a lock when you hear <a href="../sounds/growlock.wav">this tone</a><br>
+<br>
+If someone launches a guided missile at you, the ships <a href="../sounds/lock.wav">warning klaxon</a> will alert<br>
+you about that. The faster the klaxon's repeat rate, the closer the missile is.<br>
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Future Plans</font></b></td></tr></table>
+<BR>
+This game has already progressed beyond my wildest dreams, yet there's still so many things that I'd like to implement. The greatest part of my attention will now go into the multiplayer code. New weapons and buildings are also planned. The next upcoming gameplay element are tanks, and this will be a biggie too.<br>
+<br>
+Keep checking the forums, and make sure you let DerangedRaid update itself via the internet as often as possible.
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Credits</font></b></td></tr></table>
+<BR>
+<table cellspacing=10 border=0 width=400>
+<tr><td bgcolor=#003300><a href="mailto:werewolf@playspoon.com"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Josef Jahn</font></a></td><td bgcolor=#220000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Main Programmer<br>Game Idea<br>Music</font></td></tr>
+<tr><td bgcolor=#002200><a href="mailto:ant@playspoon.com"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Anthony Barsoumian</font></a></td><td bgcolor=#330000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Programmer</font></td></tr>
+<tr><td bgcolor=#003300><a href="mailto:crolyer@playspoon.com"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Bernhard Uhl</font></a></td><td bgcolor=#220000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Programmer</font></td></tr>
+<tr><td bgcolor=#002200><a href="mailto:pixelfox@zdnetonebox.com"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Storm</font></a></td><td bgcolor=#330000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Modeler</font></td></tr>
+</table>
+<br>
+Deranged Raid uses code snippets from the following people:<br>
+<br>
+<table cellspacing=10 border=0 width=400>
+<tr><td bgcolor=#003300><a href="http://nehe.gamedev.net"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Jeff Molofee</font></a></td><td bgcolor=#220000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+GL init code</font></td></tr>
+<tr><td bgcolor=#002200><a href="mailto:nkmiller@calpoly.edu"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Nate Miller</font></a></td><td bgcolor=#330000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Text rendering<br>TGA loader<br>original menu code</font></td></tr>
+<tr><td bgcolor=#003300><a href="mailto:n.anderson@eidosnet.co.uk"><font face="Arial,Helvetica" size=2 color=7F7F7F>
+Nicholas Anderson</font></a></td><td bgcolor=#220000><font face="Arial,Helvetica" size=2 color=7F7F7F>
+LOD algorithm<br>Diamond-Square algorithm</font></td></tr>
+</table>
+<br>
+All 3rd Party sourcecode is used in compliance with the GPL license, under which they were originally distributed. Hence, Deranged Raid itself and it's sourcecode is distributed unter the same rights. A copy of the GPL license is included in the "readme" subdirectory.
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+</font>
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

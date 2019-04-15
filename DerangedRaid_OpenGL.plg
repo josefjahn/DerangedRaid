@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: DerangedRaid - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPF.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /vd0 /GR /GX /ZI /Od /Oy /I "..\include" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "__MSC__" /Fo"debug/" /Fd"debug/" /FD /c 
+"C:\Development\DerangedRaid\DerangedRaid.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPF.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP10.tmp" with contents
+[
+winmm.lib opengl32.lib glu32.lib glaux.lib glut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /profile /map:"debug/DerangedRaid.map" /debug /machine:I386 /out:"DerangedRaid.exe" /libpath:"..\..\lib\win32" 
+.\debug\DerangedRaid.obj
+.\debug\drnetwork.obj
+.\debug\menu.obj
+.\debug\net_udp.obj
+.\debug\text.obj
+.\debug\tga.obj
+.\debug\tlib_gl.obj
+.\debug\Script1.res
+..\Glide2x\Src\Lib\Win32\texus.lib
+.\fmodvc.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP10.tmp"
+<h3>Output Window</h3>
+Compiling...
+DerangedRaid.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+DerangedRaid.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

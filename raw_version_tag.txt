@@ -1,0 +1,31 @@
+NewVersion: 2
+url: www.playspoon.com
+
+OldVersion: 1
+/autoupdate/deleteme.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update02_readme.txt
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update02_readme.txt update02_readme.txt
+system deleteme.exe
+}
+
+OldVersion: 0
+/autoupdate/deleteme.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update02_readme.txt
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update02_readme.txt update02_readme.txt
+system deleteme.exe
+}
+end
+
+
+
+
+
+

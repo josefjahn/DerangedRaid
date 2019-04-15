@@ -1,0 +1,533 @@
+NewVersion: 4
+url: www.playspoon.com
+
+OldVersion: 3
+/autoupdate/deleteme.exe
+/autoupdate/AutoUpdate.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update04_readme.txt
+/autoupdate/menu.dat
+/autoupdate/fonts/font.tga
+/autoupdate/meshes/aaa1-lod1-part1.asc
+/autoupdate/meshes/aaa1-lod2-part1.asc
+/autoupdate/meshes/aaa1-lod3-part1.asc
+/autoupdate/meshes/aaa1-lod1-part2.asc
+/autoupdate/meshes/aaa1-lod2-part2.asc
+/autoupdate/meshes/aaa1-lod3-part2.asc
+/autoupdate/meshes/aaa1-lod1-part3.asc
+/autoupdate/meshes/aaa1-lod2-part3.asc
+/autoupdate/meshes/aaa1-lod3-part3.asc
+/autoupdate/meshes/Command.slt
+/autoupdate/meshes/Mine.slt
+/autoupdate/meshes/Missile.slt
+/autoupdate/meshes/Power.slt
+/autoupdate/meshes/sat1-lod1.asc
+/autoupdate/meshes/sat1-lod2.asc
+/autoupdate/meshes/sat2-lod1.asc
+/autoupdate/meshes/sat2-lod2.asc
+/autoupdate/meshes/Ship1.slt
+/autoupdate/meshes/ship1-lod1.asc
+/autoupdate/meshes/ship1-lod2.asc
+/autoupdate/meshes/Ship2.slt
+/autoupdate/meshes/ship2-lod1.asc
+/autoupdate/meshes/ship2-lod2.asc
+/autoupdate/meshes/Ship3.slt
+/autoupdate/meshes/tank1-lod1.asc
+/autoupdate/meshes/tank1-lod2.asc
+/autoupdate/meshes/tank1-lod3.asc
+/autoupdate/meshes/tank2-lod1.asc
+/autoupdate/meshes/tank2-lod2.asc
+/autoupdate/meshes/tank2-lod3.asc
+/autoupdate/meshes/tank1-lod1.TEX
+/autoupdate/meshes/tank2-lod1.TEX
+/autoupdate/textures/tree1_1.raw
+/autoupdate/textures/tree1_1a.raw
+/autoupdate/textures/tree1_2.raw
+/autoupdate/textures/tree1_2a.raw
+/autoupdate/textures/icon_target.raw
+/autoupdate/textures/icon_friendly.raw
+/autoupdate/textures/icon_enemybase.raw
+/autoupdate/textures/icon_friendlybase.raw
+/autoupdate/sounds/event_thunder4.wav
+/autoupdate/sounds/event_thunder2.wav
+/autoupdate/sounds/event_thunder1.wav
+/autoupdate/sounds/ambient_crickets.wav
+/autoupdate/sounds/ambient_cricketsnight.wav
+/autoupdate/sounds/ambient_rain.wav
+/autoupdate/sounds/ambient_rainlight.wav
+/autoupdate/sounds/ambient_wind.wav
+/autoupdate/sounds/ambient_windhighalt.wav
+/autoupdate/sounds/event_thunder5.wav
+/autoupdate/sounds/event_thunder6.wav
+/autoupdate/sounds/event_thunder7.wav
+/autoupdate/sounds/event_thunder8.wav
+/autoupdate/sounds/ship_watersplash.wav
+/autoupdate/sounds/ship_waterexit.wav
+/autoupdate/sounds/ship_underwater.wav
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\AutoUpdate.exe copyme2.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update04_readme.txt update04_readme.txt
+copy tmp\menu.dat menu.dat
+copy tmp\font.tga fonts\font.tga
+copy tmp\aaa1-lod1-part1.asc meshes\aaa1-lod1-part1.asc
+copy tmp\aaa1-lod2-part1.asc meshes\aaa1-lod2-part1.asc
+copy tmp\aaa1-lod3-part1.asc meshes\aaa1-lod3-part1.asc
+copy tmp\aaa1-lod1-part2.asc meshes\aaa1-lod1-part2.asc
+copy tmp\aaa1-lod2-part2.asc meshes\aaa1-lod2-part2.asc
+copy tmp\aaa1-lod3-part2.asc meshes\aaa1-lod3-part2.asc
+copy tmp\aaa1-lod1-part3.asc meshes\aaa1-lod1-part3.asc
+copy tmp\aaa1-lod2-part3.asc meshes\aaa1-lod2-part3.asc
+copy tmp\aaa1-lod3-part3.asc meshes\aaa1-lod3-part3.asc
+copy tmp\Command.slt meshes\Command.slt
+copy tmp\Mine.slt meshes\Mine.slt
+copy tmp\Missile.slt meshes\Missile.slt
+copy tmp\Power.slt meshes\Power.slt
+copy tmp\sat1-lod1.asc meshes\sat1-lod1.asc
+copy tmp\sat1-lod2.asc meshes\sat1-lod2.asc
+copy tmp\sat2-lod1.asc meshes\sat2-lod1.asc
+copy tmp\sat2-lod2.asc meshes\sat2-lod2.asc
+copy tmp\Ship1.slt meshes\Ship1.slt
+copy tmp\ship1-lod1.asc meshes\ship1-lod1.asc
+copy tmp\ship1-lod2.asc meshes\ship1-lod2.asc
+copy tmp\Ship2.slt meshes\Ship2.slt
+copy tmp\ship2-lod1.asc meshes\ship2-lod1.asc
+copy tmp\ship2-lod2.asc meshes\ship2-lod2.asc
+copy tmp\Ship3.slt meshes\Ship3.slt
+copy tmp\tank1-lod1.asc meshes\tank1-lod1.asc
+copy tmp\tank1-lod2.asc meshes\tank1-lod2.asc
+copy tmp\tank1-lod3.asc meshes\tank1-lod3.asc
+copy tmp\tank2-lod1.asc meshes\tank2-lod1.asc
+copy tmp\tank2-lod2.asc meshes\tank2-lod2.asc
+copy tmp\tank2-lod3.asc meshes\tank2-lod3.asc
+copy tmp\tank1-lod1.TEX meshes\tank1-lod1.TEX
+copy tmp\tank2-lod1.TEX meshes\tank2-lod1.TEX
+copy tmp\tree1_1.raw textures\tree1_1.raw
+copy tmp\tree1_1a.raw textures\tree1_1a.raw
+copy tmp\tree1_2.raw textures\tree1_2.raw
+copy tmp\tree1_2a.raw textures\tree1_2a.raw
+copy tmp\icon_target.raw textures\icon_target.raw
+copy tmp\icon_friendly.raw textures\icon_friendly.raw
+copy tmp\icon_enemybase.raw textures\icon_enemybase.raw
+copy tmp\icon_friendlybase.raw textures\icon_friendlybase.raw
+copy tmp\event_thunder4.wav sounds\event_thunder4.wav
+copy tmp\event_thunder2.wav sounds\event_thunder2.wav
+copy tmp\event_thunder1.wav sounds\event_thunder1.wav
+copy tmp\ambient_crickets.wav sounds\ambient_crickets.wav
+copy tmp\ambient_cricketsnight.wav sounds\ambient_cricketsnight.wav
+copy tmp\ambient_rain.wav sounds\ambient_rain.wav
+copy tmp\ambient_rainlight.wav sounds\ambient_rainlight.wav
+copy tmp\ambient_wind.wav sounds\ambient_wind.wav
+copy tmp\ambient_windhighalt.wav sounds\ambient_windhighalt.wav
+copy tmp\event_thunder5.wav sounds\event_thunder5.wav
+copy tmp\event_thunder6.wav sounds\event_thunder6.wav
+copy tmp\event_thunder7.wav sounds\event_thunder7.wav
+copy tmp\event_thunder8.wav sounds\event_thunder8.wav
+copy tmp\ship_watersplash.wav sounds\ship_watersplash.wav
+copy tmp\ship_waterexit.wav sounds\ship_waterexit.wav
+copy tmp\ship_underwater.wav sounds\ship_underwater.wav
+system deleteme.exe
+}
+
+OldVersion: 2
+/autoupdate/deleteme.exe
+/autoupdate/AutoUpdate.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update03_readme.txt
+/autoupdate/update04_readme.txt
+/autoupdate/menu.dat
+/autoupdate/fonts/font.tga
+/autoupdate/meshes/aaa1-lod1-part1.asc
+/autoupdate/meshes/aaa1-lod2-part1.asc
+/autoupdate/meshes/aaa1-lod3-part1.asc
+/autoupdate/meshes/aaa1-lod1-part2.asc
+/autoupdate/meshes/aaa1-lod2-part2.asc
+/autoupdate/meshes/aaa1-lod3-part2.asc
+/autoupdate/meshes/aaa1-lod1-part3.asc
+/autoupdate/meshes/aaa1-lod2-part3.asc
+/autoupdate/meshes/aaa1-lod3-part3.asc
+/autoupdate/meshes/Command.slt
+/autoupdate/meshes/Mine.slt
+/autoupdate/meshes/Missile.slt
+/autoupdate/meshes/Power.slt
+/autoupdate/meshes/sat1-lod1.asc
+/autoupdate/meshes/sat1-lod2.asc
+/autoupdate/meshes/sat2-lod1.asc
+/autoupdate/meshes/sat2-lod2.asc
+/autoupdate/meshes/Ship1.slt
+/autoupdate/meshes/ship1-lod1.asc
+/autoupdate/meshes/ship1-lod2.asc
+/autoupdate/meshes/Ship2.slt
+/autoupdate/meshes/ship2-lod1.asc
+/autoupdate/meshes/ship2-lod2.asc
+/autoupdate/meshes/Ship3.slt
+/autoupdate/meshes/tank1-lod1.asc
+/autoupdate/meshes/tank1-lod2.asc
+/autoupdate/meshes/tank1-lod3.asc
+/autoupdate/meshes/tank2-lod1.asc
+/autoupdate/meshes/tank2-lod2.asc
+/autoupdate/meshes/tank2-lod3.asc
+/autoupdate/meshes/tank1-lod1.TEX
+/autoupdate/meshes/tank2-lod1.TEX
+/autoupdate/textures/tree1_1.raw
+/autoupdate/textures/tree1_1a.raw
+/autoupdate/textures/tree1_2.raw
+/autoupdate/textures/icon_target.raw
+/autoupdate/textures/icon_friendly.raw
+/autoupdate/textures/icon_enemybase.raw
+/autoupdate/textures/icon_friendlybase.raw
+/autoupdate/textures/tree1_2a.raw
+/autoupdate/sounds/event_thunder4.wav
+/autoupdate/sounds/event_thunder2.wav
+/autoupdate/sounds/event_thunder1.wav
+/autoupdate/sounds/ambient_crickets.wav
+/autoupdate/sounds/ambient_cricketsnight.wav
+/autoupdate/sounds/ambient_rain.wav
+/autoupdate/sounds/ambient_rainlight.wav
+/autoupdate/sounds/ambient_wind.wav
+/autoupdate/sounds/ambient_windhighalt.wav
+/autoupdate/sounds/event_thunder5.wav
+/autoupdate/sounds/event_thunder6.wav
+/autoupdate/sounds/event_thunder7.wav
+/autoupdate/sounds/event_thunder8.wav
+/autoupdate/sounds/ship_watersplash.wav
+/autoupdate/sounds/ship_waterexit.wav
+/autoupdate/sounds/ship_underwater.wav
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\AutoUpdate.exe copyme2.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update03_readme.txt update03_readme.txt
+copy tmp\update04_readme.txt update04_readme.txt
+copy tmp\menu.dat menu.dat
+copy tmp\font.tga fonts\font.tga
+copy tmp\aaa1-lod1-part1.asc meshes\aaa1-lod1-part1.asc
+copy tmp\aaa1-lod2-part1.asc meshes\aaa1-lod2-part1.asc
+copy tmp\aaa1-lod3-part1.asc meshes\aaa1-lod3-part1.asc
+copy tmp\aaa1-lod1-part2.asc meshes\aaa1-lod1-part2.asc
+copy tmp\aaa1-lod2-part2.asc meshes\aaa1-lod2-part2.asc
+copy tmp\aaa1-lod3-part2.asc meshes\aaa1-lod3-part2.asc
+copy tmp\aaa1-lod1-part3.asc meshes\aaa1-lod1-part3.asc
+copy tmp\aaa1-lod2-part3.asc meshes\aaa1-lod2-part3.asc
+copy tmp\aaa1-lod3-part3.asc meshes\aaa1-lod3-part3.asc
+copy tmp\Command.slt meshes\Command.slt
+copy tmp\Mine.slt meshes\Mine.slt
+copy tmp\Missile.slt meshes\Missile.slt
+copy tmp\Power.slt meshes\Power.slt
+copy tmp\sat1-lod1.asc meshes\sat1-lod1.asc
+copy tmp\sat1-lod2.asc meshes\sat1-lod2.asc
+copy tmp\sat2-lod1.asc meshes\sat2-lod1.asc
+copy tmp\sat2-lod2.asc meshes\sat2-lod2.asc
+copy tmp\Ship1.slt meshes\Ship1.slt
+copy tmp\ship1-lod1.asc meshes\ship1-lod1.asc
+copy tmp\ship1-lod2.asc meshes\ship1-lod2.asc
+copy tmp\Ship2.slt meshes\Ship2.slt
+copy tmp\ship2-lod1.asc meshes\ship2-lod1.asc
+copy tmp\ship2-lod2.asc meshes\ship2-lod2.asc
+copy tmp\Ship3.slt meshes\Ship3.slt
+copy tmp\tank1-lod1.asc meshes\tank1-lod1.asc
+copy tmp\tank1-lod2.asc meshes\tank1-lod2.asc
+copy tmp\tank1-lod3.asc meshes\tank1-lod3.asc
+copy tmp\tank2-lod1.asc meshes\tank2-lod1.asc
+copy tmp\tank2-lod2.asc meshes\tank2-lod2.asc
+copy tmp\tank2-lod3.asc meshes\tank2-lod3.asc
+copy tmp\tank1-lod1.TEX meshes\tank1-lod1.TEX
+copy tmp\tank2-lod1.TEX meshes\tank2-lod1.TEX
+copy tmp\tree1_1.raw textures\tree1_1.raw
+copy tmp\tree1_1a.raw textures\tree1_1a.raw
+copy tmp\tree1_2.raw textures\tree1_2.raw
+copy tmp\tree1_2a.raw textures\tree1_2a.raw
+copy tmp\icon_target.raw textures\icon_target.raw
+copy tmp\icon_friendly.raw textures\icon_friendly.raw
+copy tmp\icon_enemybase.raw textures\icon_enemybase.raw
+copy tmp\icon_friendlybase.raw textures\icon_friendlybase.raw
+copy tmp\event_thunder4.wav sounds\event_thunder4.wav
+copy tmp\event_thunder2.wav sounds\event_thunder2.wav
+copy tmp\event_thunder1.wav sounds\event_thunder1.wav
+copy tmp\ambient_crickets.wav sounds\ambient_crickets.wav
+copy tmp\ambient_cricketsnight.wav sounds\ambient_cricketsnight.wav
+copy tmp\ambient_rain.wav sounds\ambient_rain.wav
+copy tmp\ambient_rainlight.wav sounds\ambient_rainlight.wav
+copy tmp\ambient_wind.wav sounds\ambient_wind.wav
+copy tmp\ambient_windhighalt.wav sounds\ambient_windhighalt.wav
+copy tmp\event_thunder5.wav sounds\event_thunder5.wav
+copy tmp\event_thunder6.wav sounds\event_thunder6.wav
+copy tmp\event_thunder7.wav sounds\event_thunder7.wav
+copy tmp\event_thunder8.wav sounds\event_thunder8.wav
+copy tmp\ship_watersplash.wav sounds\ship_watersplash.wav
+copy tmp\ship_waterexit.wav sounds\ship_waterexit.wav
+copy tmp\ship_underwater.wav sounds\ship_underwater.wav
+system deleteme.exe
+}
+
+OldVersion: 1
+/autoupdate/deleteme.exe
+/autoupdate/AutoUpdate.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update02_readme.txt
+/autoupdate/update03_readme.txt
+/autoupdate/update04_readme.txt
+/autoupdate/menu.dat
+/autoupdate/fonts/font.tga
+/autoupdate/meshes/aaa1-lod1-part1.asc
+/autoupdate/meshes/aaa1-lod2-part1.asc
+/autoupdate/meshes/aaa1-lod3-part1.asc
+/autoupdate/meshes/aaa1-lod1-part2.asc
+/autoupdate/meshes/aaa1-lod2-part2.asc
+/autoupdate/meshes/aaa1-lod3-part2.asc
+/autoupdate/meshes/aaa1-lod1-part3.asc
+/autoupdate/meshes/aaa1-lod2-part3.asc
+/autoupdate/meshes/aaa1-lod3-part3.asc
+/autoupdate/meshes/Command.slt
+/autoupdate/meshes/Mine.slt
+/autoupdate/meshes/Missile.slt
+/autoupdate/meshes/Power.slt
+/autoupdate/meshes/sat1-lod1.asc
+/autoupdate/meshes/sat1-lod2.asc
+/autoupdate/meshes/sat2-lod1.asc
+/autoupdate/meshes/sat2-lod2.asc
+/autoupdate/meshes/Ship1.slt
+/autoupdate/meshes/ship1-lod1.asc
+/autoupdate/meshes/ship1-lod2.asc
+/autoupdate/meshes/Ship2.slt
+/autoupdate/meshes/ship2-lod1.asc
+/autoupdate/meshes/ship2-lod2.asc
+/autoupdate/meshes/Ship3.slt
+/autoupdate/meshes/tank1-lod1.asc
+/autoupdate/meshes/tank1-lod2.asc
+/autoupdate/meshes/tank1-lod3.asc
+/autoupdate/meshes/tank2-lod1.asc
+/autoupdate/meshes/tank2-lod2.asc
+/autoupdate/meshes/tank2-lod3.asc
+/autoupdate/meshes/tank1-lod1.TEX
+/autoupdate/meshes/tank2-lod1.TEX
+/autoupdate/textures/tree1_1.raw
+/autoupdate/textures/tree1_1a.raw
+/autoupdate/textures/tree1_2.raw
+/autoupdate/textures/tree1_2a.raw
+/autoupdate/textures/icon_target.raw
+/autoupdate/textures/icon_friendly.raw
+/autoupdate/textures/icon_enemybase.raw
+/autoupdate/textures/icon_friendlybase.raw
+/autoupdate/sounds/event_thunder4.wav
+/autoupdate/sounds/event_thunder2.wav
+/autoupdate/sounds/event_thunder1.wav
+/autoupdate/sounds/ambient_crickets.wav
+/autoupdate/sounds/ambient_cricketsnight.wav
+/autoupdate/sounds/ambient_rain.wav
+/autoupdate/sounds/ambient_rainlight.wav
+/autoupdate/sounds/ambient_wind.wav
+/autoupdate/sounds/ambient_windhighalt.wav
+/autoupdate/sounds/event_thunder5.wav
+/autoupdate/sounds/event_thunder6.wav
+/autoupdate/sounds/event_thunder7.wav
+/autoupdate/sounds/event_thunder8.wav
+/autoupdate/sounds/ship_watersplash.wav
+/autoupdate/sounds/ship_waterexit.wav
+/autoupdate/sounds/ship_underwater.wav
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\AutoUpdate.exe copyme2.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update02_readme.txt update02_readme.txt
+copy tmp\update03_readme.txt update03_readme.txt
+copy tmp\update04_readme.txt update04_readme.txt
+copy tmp\menu.dat menu.dat
+copy tmp\font.tga fonts\font.tga
+copy tmp\aaa1-lod1-part1.asc meshes\aaa1-lod1-part1.asc
+copy tmp\aaa1-lod2-part1.asc meshes\aaa1-lod2-part1.asc
+copy tmp\aaa1-lod3-part1.asc meshes\aaa1-lod3-part1.asc
+copy tmp\aaa1-lod1-part2.asc meshes\aaa1-lod1-part2.asc
+copy tmp\aaa1-lod2-part2.asc meshes\aaa1-lod2-part2.asc
+copy tmp\aaa1-lod3-part2.asc meshes\aaa1-lod3-part2.asc
+copy tmp\aaa1-lod1-part3.asc meshes\aaa1-lod1-part3.asc
+copy tmp\aaa1-lod2-part3.asc meshes\aaa1-lod2-part3.asc
+copy tmp\aaa1-lod3-part3.asc meshes\aaa1-lod3-part3.asc
+copy tmp\Command.slt meshes\Command.slt
+copy tmp\Mine.slt meshes\Mine.slt
+copy tmp\Missile.slt meshes\Missile.slt
+copy tmp\Power.slt meshes\Power.slt
+copy tmp\sat1-lod1.asc meshes\sat1-lod1.asc
+copy tmp\sat1-lod2.asc meshes\sat1-lod2.asc
+copy tmp\sat2-lod1.asc meshes\sat2-lod1.asc
+copy tmp\sat2-lod2.asc meshes\sat2-lod2.asc
+copy tmp\Ship1.slt meshes\Ship1.slt
+copy tmp\ship1-lod1.asc meshes\ship1-lod1.asc
+copy tmp\ship1-lod2.asc meshes\ship1-lod2.asc
+copy tmp\Ship2.slt meshes\Ship2.slt
+copy tmp\ship2-lod1.asc meshes\ship2-lod1.asc
+copy tmp\ship2-lod2.asc meshes\ship2-lod2.asc
+copy tmp\Ship3.slt meshes\Ship3.slt
+copy tmp\tank1-lod1.asc meshes\tank1-lod1.asc
+copy tmp\tank1-lod2.asc meshes\tank1-lod2.asc
+copy tmp\tank1-lod3.asc meshes\tank1-lod3.asc
+copy tmp\tank2-lod1.asc meshes\tank2-lod1.asc
+copy tmp\tank2-lod2.asc meshes\tank2-lod2.asc
+copy tmp\tank2-lod3.asc meshes\tank2-lod3.asc
+copy tmp\tank1-lod1.TEX meshes\tank1-lod1.TEX
+copy tmp\tank2-lod1.TEX meshes\tank2-lod1.TEX
+copy tmp\tree1_1.raw textures\tree1_1.raw
+copy tmp\tree1_1a.raw textures\tree1_1a.raw
+copy tmp\tree1_2.raw textures\tree1_2.raw
+copy tmp\tree1_2a.raw textures\tree1_2a.raw
+copy tmp\icon_target.raw textures\icon_target.raw
+copy tmp\icon_friendly.raw textures\icon_friendly.raw
+copy tmp\icon_enemybase.raw textures\icon_enemybase.raw
+copy tmp\icon_friendlybase.raw textures\icon_friendlybase.raw
+copy tmp\event_thunder4.wav sounds\event_thunder4.wav
+copy tmp\event_thunder2.wav sounds\event_thunder2.wav
+copy tmp\event_thunder1.wav sounds\event_thunder1.wav
+copy tmp\ambient_crickets.wav sounds\ambient_crickets.wav
+copy tmp\ambient_cricketsnight.wav sounds\ambient_cricketsnight.wav
+copy tmp\ambient_rain.wav sounds\ambient_rain.wav
+copy tmp\ambient_rainlight.wav sounds\ambient_rainlight.wav
+copy tmp\ambient_wind.wav sounds\ambient_wind.wav
+copy tmp\ambient_windhighalt.wav sounds\ambient_windhighalt.wav
+copy tmp\event_thunder5.wav sounds\event_thunder5.wav
+copy tmp\event_thunder6.wav sounds\event_thunder6.wav
+copy tmp\event_thunder7.wav sounds\event_thunder7.wav
+copy tmp\event_thunder8.wav sounds\event_thunder8.wav
+copy tmp\ship_watersplash.wav sounds\ship_watersplash.wav
+copy tmp\ship_waterexit.wav sounds\ship_waterexit.wav
+copy tmp\ship_underwater.wav sounds\ship_underwater.wav
+system deleteme.exe
+}
+
+OldVersion: 0
+/autoupdate/deleteme.exe
+/autoupdate/AutoUpdate.exe
+/autoupdate/DerangedRaid.exe
+/autoupdate/update03_readme.txt
+/autoupdate/update03_readme.txt
+/autoupdate/update04_readme.txt
+/autoupdate/menu.dat
+/autoupdate/fonts/font.tga
+/autoupdate/meshes/aaa1-lod1-part1.asc
+/autoupdate/meshes/aaa1-lod2-part1.asc
+/autoupdate/meshes/aaa1-lod3-part1.asc
+/autoupdate/meshes/aaa1-lod1-part2.asc
+/autoupdate/meshes/aaa1-lod2-part2.asc
+/autoupdate/meshes/aaa1-lod3-part2.asc
+/autoupdate/meshes/aaa1-lod1-part3.asc
+/autoupdate/meshes/aaa1-lod2-part3.asc
+/autoupdate/meshes/aaa1-lod3-part3.asc
+/autoupdate/meshes/Command.slt
+/autoupdate/meshes/Mine.slt
+/autoupdate/meshes/Missile.slt
+/autoupdate/meshes/Power.slt
+/autoupdate/meshes/sat1-lod1.asc
+/autoupdate/meshes/sat1-lod2.asc
+/autoupdate/meshes/sat2-lod1.asc
+/autoupdate/meshes/sat2-lod2.asc
+/autoupdate/meshes/Ship1.slt
+/autoupdate/meshes/ship1-lod1.asc
+/autoupdate/meshes/ship1-lod2.asc
+/autoupdate/meshes/Ship2.slt
+/autoupdate/meshes/ship2-lod1.asc
+/autoupdate/meshes/ship2-lod2.asc
+/autoupdate/meshes/Ship3.slt
+/autoupdate/meshes/tank1-lod1.asc
+/autoupdate/meshes/tank1-lod2.asc
+/autoupdate/meshes/tank1-lod3.asc
+/autoupdate/meshes/tank2-lod1.asc
+/autoupdate/meshes/tank2-lod2.asc
+/autoupdate/meshes/tank2-lod3.asc
+/autoupdate/meshes/tank1-lod1.TEX
+/autoupdate/meshes/tank2-lod1.TEX
+/autoupdate/textures/tree1_1.raw
+/autoupdate/textures/tree1_1a.raw
+/autoupdate/textures/tree1_2.raw
+/autoupdate/textures/tree1_2a.raw
+/autoupdate/textures/icon_target.raw
+/autoupdate/textures/icon_friendly.raw
+/autoupdate/textures/icon_enemybase.raw
+/autoupdate/textures/icon_friendlybase.raw
+/autoupdate/sounds/event_thunder4.wav
+/autoupdate/sounds/event_thunder2.wav
+/autoupdate/sounds/event_thunder1.wav
+/autoupdate/sounds/ambient_crickets.wav
+/autoupdate/sounds/ambient_cricketsnight.wav
+/autoupdate/sounds/ambient_rain.wav
+/autoupdate/sounds/ambient_rainlight.wav
+/autoupdate/sounds/ambient_wind.wav
+/autoupdate/sounds/ambient_windhighalt.wav
+/autoupdate/sounds/event_thunder5.wav
+/autoupdate/sounds/event_thunder6.wav
+/autoupdate/sounds/event_thunder7.wav
+/autoupdate/sounds/event_thunder8.wav
+/autoupdate/sounds/ship_watersplash.wav
+/autoupdate/sounds/ship_waterexit.wav
+/autoupdate/sounds/ship_underwater.wav
+{
+copy tmp\DerangedRaid.exe copyme.exe
+copy tmp\AutoUpdate.exe copyme2.exe
+copy tmp\deleteme.exe deleteme.exe
+copy tmp\update02_readme.txt update02_readme.txt
+copy tmp\update03_readme.txt update03_readme.txt
+copy tmp\update04_readme.txt update04_readme.txt
+copy tmp\menu.dat menu.dat
+copy tmp\font.tga fonts\font.tga
+copy tmp\aaa1-lod1-part1.asc meshes\aaa1-lod1-part1.asc
+copy tmp\aaa1-lod2-part1.asc meshes\aaa1-lod2-part1.asc
+copy tmp\aaa1-lod3-part1.asc meshes\aaa1-lod3-part1.asc
+copy tmp\aaa1-lod1-part2.asc meshes\aaa1-lod1-part2.asc
+copy tmp\aaa1-lod2-part2.asc meshes\aaa1-lod2-part2.asc
+copy tmp\aaa1-lod3-part2.asc meshes\aaa1-lod3-part2.asc
+copy tmp\aaa1-lod1-part3.asc meshes\aaa1-lod1-part3.asc
+copy tmp\aaa1-lod2-part3.asc meshes\aaa1-lod2-part3.asc
+copy tmp\aaa1-lod3-part3.asc meshes\aaa1-lod3-part3.asc
+copy tmp\Command.slt meshes\Command.slt
+copy tmp\Mine.slt meshes\Mine.slt
+copy tmp\Missile.slt meshes\Missile.slt
+copy tmp\Power.slt meshes\Power.slt
+copy tmp\sat1-lod1.asc meshes\sat1-lod1.asc
+copy tmp\sat1-lod2.asc meshes\sat1-lod2.asc
+copy tmp\sat2-lod1.asc meshes\sat2-lod1.asc
+copy tmp\sat2-lod2.asc meshes\sat2-lod2.asc
+copy tmp\Ship1.slt meshes\Ship1.slt
+copy tmp\ship1-lod1.asc meshes\ship1-lod1.asc
+copy tmp\ship1-lod2.asc meshes\ship1-lod2.asc
+copy tmp\Ship2.slt meshes\Ship2.slt
+copy tmp\ship2-lod1.asc meshes\ship2-lod1.asc
+copy tmp\ship2-lod2.asc meshes\ship2-lod2.asc
+copy tmp\Ship3.slt meshes\Ship3.slt
+copy tmp\tank1-lod1.asc meshes\tank1-lod1.asc
+copy tmp\tank1-lod2.asc meshes\tank1-lod2.asc
+copy tmp\tank1-lod3.asc meshes\tank1-lod3.asc
+copy tmp\tank2-lod1.asc meshes\tank2-lod1.asc
+copy tmp\tank2-lod2.asc meshes\tank2-lod2.asc
+copy tmp\tank2-lod3.asc meshes\tank2-lod3.asc
+copy tmp\tank1-lod1.TEX meshes\tank1-lod1.TEX
+copy tmp\tank2-lod1.TEX meshes\tank2-lod1.TEX
+copy tmp\tree1_1.raw textures\tree1_1.raw
+copy tmp\tree1_1a.raw textures\tree1_1a.raw
+copy tmp\tree1_2.raw textures\tree1_2.raw
+copy tmp\tree1_2a.raw textures\tree1_2a.raw
+copy tmp\icon_target.raw textures\icon_target.raw
+copy tmp\icon_friendly.raw textures\icon_friendly.raw
+copy tmp\icon_enemybase.raw textures\icon_enemybase.raw
+copy tmp\icon_friendlybase.raw textures\icon_friendlybase.raw
+copy tmp\event_thunder4.wav sounds\event_thunder4.wav
+copy tmp\event_thunder2.wav sounds\event_thunder2.wav
+copy tmp\event_thunder1.wav sounds\event_thunder1.wav
+copy tmp\ambient_crickets.wav sounds\ambient_crickets.wav
+copy tmp\ambient_cricketsnight.wav sounds\ambient_cricketsnight.wav
+copy tmp\ambient_rain.wav sounds\ambient_rain.wav
+copy tmp\ambient_rainlight.wav sounds\ambient_rainlight.wav
+copy tmp\ambient_wind.wav sounds\ambient_wind.wav
+copy tmp\ambient_windhighalt.wav sounds\ambient_windhighalt.wav
+copy tmp\event_thunder5.wav sounds\event_thunder5.wav
+copy tmp\event_thunder6.wav sounds\event_thunder6.wav
+copy tmp\event_thunder7.wav sounds\event_thunder7.wav
+copy tmp\event_thunder8.wav sounds\event_thunder8.wav
+copy tmp\ship_watersplash.wav sounds\ship_watersplash.wav
+copy tmp\ship_waterexit.wav sounds\ship_waterexit.wav
+copy tmp\ship_underwater.wav sounds\ship_underwater.wav
+system deleteme.exe
+}
+end
+
+
+
+

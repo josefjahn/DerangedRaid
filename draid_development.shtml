@@ -1,0 +1,151 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font color=ffffff>
+
+<font size=+2>
+DEVELOPMENT DIARY:<br>
+</font>
+<font size=+1>
+---------------------------------------<br>
+<a href="draid_development1.shtml">Day 01 - 19</a><br>
+<a href="draid_development2.shtml">Day 20 - 39</a><br>
+<a href="draid_development3.shtml">Day 40 - 59</a><br>
+<a href="draid_development4.shtml">Day 60 - 79</a><br>
+<a href="draid_development5.shtml">Day 80 - 99 </a><br>
+<a href="draid_development6.shtml">Day 100 - 120</a><br>
+<a href="draid_development7.shtml">Day 120 - ?</a><br>
+</font><br><br><br>
+
+
+<BR>
+<BR>
+--------------------------------------------------------------------------------------<BR>
+CURRENT DEVELOPMENT STATUS<BR>
+[X]=done, [+]=partly done, [ ]=to do<BR>
+<BR>
+[X] Triangle renderer<BR>
+[X] Triangle depth sort<BR>
+[X] Fractal landscape generator<BR>
+[X] Camera POV implementation<BR>
+[X] good keyboard routines<BR>
+[X] Basic flight physics/controls<BR>
+[X] Optimized z-sort / substitute method<BR>
+[X] Optimized vertex calculations<BR>
+[X] Object-triangle data management<BR>
+[X] 3DS loader<BR>
+[X] Light system<BR>
+[X] Music<BR>
+[X] Sound<BR>
+[X] Ground collision detection<BR>
+[X] Basic structures (Landing Strip, AAA-Site, SAM-Site, Power Plant) <BR>
+[X] Weapons<BR>
+[X] Particles & Smoke system<BR>
+[X] Explosions<BR>
+[X] Timing engine<BR>
+[X] OpenGL support<BR>
+[X] Triangle 3D Clipping<BR>
+[X] Sky<BR>
+[X] Terrain LOD<BR>
+[X] Automatic smooth landscape texturing<BR>
+[X] Water<BR>
+[X] Menu System<BR>
+[X] Sun and Moon<BR>
+[X] Positional sound system<BR>
+[X] Weather effects<BR>
+[+] Multiplayer support<BR>
+[+] Interface for building structures<BR>
+[+] AI for computer pilot<BR>
+[ ] AI for computer builder<BR>
+<BR>
+--------------------------------------------------------------------------------------<BR>
+DETAILS:<BR>
+<BR>
+<BR>
+FEATURES-TODO:<BR>
+==============<BR>
+[X]  Rain<BR>
+[X]  Thunder & Lighting<BR>
+[X]  "Dust" Smoke Emitters for moving Tanks<BR>
+[+]  Tanks<BR>
+[+]  Internet Server list display / menu<BR>
+[ ]  "Dust" Smoke Emitters for Ships taking off<BR>
+[ ]  Snow<BR>
+[ ]  place AAA turret onto the command center<BR>
+[ ]  Proper game won/lost score screen<BR>
+[ ]  3d and rotating radar<BR>
+[ ]  Building Interface with icons and stuff<BR>
+[ ]  Ships Types should have different speed / turn rates<BR>
+[ ]  Restrict loadout according to ship type<BR>
+[ ]  Swarm Missile<BR>
+[ ]  Cruise Missile<BR>
+[ ]  Code in the special power-ups (like Cloak, Jammer, etc..)<BR>
+[ ]  Maybe the map should "wrap" so that the map boudaries aren't displayed that drastically...<BR>
+[ ]  Ships and tanks "splashing" into the water<BR>
+<BR>
+<BR>
+BUGFIX-TODO:<BR>
+============<BR>
+[X]  External Positional sound for missiles, lasers, ships and buildings<BR>
+[X]  3D Sound buggy: laser sounds far too loud regardless of distance<BR>
+[X]  3D Sounds ruined Engine Sound handler. channel[]-stuff now obsolete<BR>
+[X]  Allow placement of several buildings per terrain tile!<BR>
+[X]  Landing animation screwed up a bit...<BR>
+[X]  TerrainHeight() function is constantly off a small bit!<BR>
+[X]  Changing ships doesn't change the associated particle emitters yet<BR>
+[X]  Still problems with object management happening somewhere near the KillShip/Respawn procedures!<BR>
+[X]  After a firefight the sky is messed up! Smells like an int<->float conversion or array-out-of-bounds error!!!<BR>
+[ ]  Fix and re-enable local light-fx
+[ ]  Damage smoke of Ships shouldn't travel skywards that fast<BR>
+[ ]  Tank's AI targeting code presumed buggy<BR>
+[ ]  Tank's don't evade buildings and such!<BR>
+[ ]  Building / Destroying objects should have a cool animation (maybe scale or growing out of the earth)<BR>
+[ ]  Particles shouldn't be visible through terrain<BR>
+[ ]  The Sky "hops" around a slight bit. Need several "sky tiles" instead of one hugeass one.<BR>
+[ ]  Trees should be "pulled down" onto the ground again when modifying the terrain in AddBuilding()<BR>
+[ ]  Resources should be given every 3 seconds, not at every frame!<BR>
+[+]  Map should display water<BR>
+[ ]  Buildings not placeable "underwater"<BR>
+[ ]  AI ships shouldn't respawn once game is won/lost<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</font>
+
+<!--</div>-->
+
+
+
+</font>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

@@ -1,0 +1,426 @@
+<TITLE>DERANGED RAID / Development</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+<font size=+2> Dev Diary, Day 40 - 59</font><br><br>
+
+<A NAME="40">
+<font color=#FFFFFF size=+1>
+Day 40<BR>
+25.4.2000<BR>
+------------<BR>
+</font>
+X) Scrapped MIDAS, switched to FSOUND<BR>
+ - While MIDAS was cool, it had no ImpulseTracker support. Almost all my songs are made with ImpulseTracker.<BR>
+   So this change is no real surprise. Plus, FSound is a lot easier to handle and much more powerful than MIDAS.<BR>
+   It's smaller too ;-)<BR>
+<BR>
+X) Added new particle types such as flare, sun, and even a moon!<BR>
+ - Changed explosion effects<BR>
+ - Added exhaust flare to missiles<BR>
+ - Now I can add sun and moon for the day/night cycle<BR>
+<BR>
+X) Discovered bug in "buy building" code??<BR>
+ - No more building possible!!!<BR>
+ - Fixed!<BR>
+<BR>
+X) Updated to brand new version of FSound<BR>
+ - Small API changes. New: Hardware 3D-Sound support (Yay!), and MP3 Playback!!!!<BR>
+<BR>
+X) Updated Satellite Blast effect<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap38.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap38.jpg" border=0></a> (Missile with flare)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap39.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap39.jpg" border=0></a> (Cool missile pic made with pause function)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap40.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap40.jpg" border=0></a> (Dumbfire missiles)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap41.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap41.jpg" border=0></a> (The new satellite blast)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap42.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap42.jpg" border=0></a> (Another cool missile shot)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap43.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap43.jpg" border=0></a> (Missile patterns made using pause)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="41">
+<font color=#FFFFFF size=+1>
+Day 41<BR>
+27.4.2000<BR>
+------------<BR>
+</font>
+X) Created main menu mesh and textures, and textured the thing too.<BR>
+ - What? A mesh for a menu? Well, the 'menu' is the insides of the control tower.<BR>
+   There are 3 computer terminals there, one for "singleplayer", "multiplayer" and "options".<BR>
+   You'll select the desired terminal with the cursor keys. Pressing escape will make you face an "exit hatch"<BR>
+   on the floor, which you can use to quit the game.<BR>
+ - After selecting a terminal, the camera will zoom in on it's screen and a menu will appear, which you can control as usual for these games.<BR>
+ - Funny idea, huh? This is actually an idea I had back in 1993!<BR>
+<BR>
+X) Coded cutscene editor<BR>
+ - I have to have some kind of "cinematic system" to move the camera for the menu.<BR>
+ - So far, 4 menu positions are saved in menu.dat: 1, 2 and 3 for Singleplayer, Multiplayer and Options. 4 is for Quit.<BR>
+   After selecting a menuitem with ENTER, the whole screen will be overdrawn by a "console texture" <BR>
+   where the console text is then being blended over.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap44.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap44.jpg" border=0></a> (The 3d game menu)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="42">
+<font color=#FFFFFF size=+1>
+Day 42<BR>
+7.5.2000<BR>
+------------<BR>
+</font>
+X) Created menu position data<BR>
+ - The consoles are also in 3D, in the final code the camera will "zoom" into the console's screen and the text will be drawn there.<BR>
+<BR>
+ - Big test in 2 days, so I won't do much more today<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="43">
+<font color=#FFFFFF size=+1>
+Day 43<BR>
+16.5.2000<BR>
+------------<BR>
+</font>
+X) Coded smooth landscape texture blending<BR>
+ - It works only if GL_Lighting is disabled :-((<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="44">
+<font color=#FFFFFF size=+1>
+Day 44<BR>
+8.7.2000<BR>
+------------<BR>
+</font>
+X) Added reflective surfaces<BR>
+ - Done via simple reflection maps, this adds much realism at little CPU cost.<BR>
+<BR>
+X) Researched lightmapping<BR>
+ - As realisation dawns that having "blended" landscape textures is only able with<BR>
+   OpenGL lighting disabled, lightmaps promise to be a high-quality substitute.<BR>
+   Unfortunately, lightmapping will add at least another render cycle. Combined with blending,<BR>
+   we will need 3 passes for a single frame. I'm sure the AMD people will eventually come up<BR>
+   with a decent CPU to play this game...<BR>
+ - Lightmap works as follows:<BR>
+   First, render the scene without lighting (100% brightness)<BR>
+   Then set glBlendFunc(GL_ZERO, GL_SRC_COLOR) and glDepthFunc(GL_LEQUAL);<BR>
+   After this, enable lighting and "whiterender" the scene, containing only the brightness<BR>
+   information.<BR>
+<BR>
+X) First lightmap implementation<BR>
+ - It's just too slow!<BR>
+<BR>
+X) Fixed missile flare trailing behind too far away<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap45.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap45.jpg" border=0></a> (New reflective glass effect)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="45">
+<font color=#FFFFFF size=+1>
+Day 45<BR>
+11.8.2000<BR>
+------------<BR>
+</font>
+X) Smoothed landing animation<BR>
+ - Ships are now realigned automatically while landing.<BR>
+<BR>
+X) Added "Landing", "Takeoff" and "Eject" HUD-indicators.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="46">
+<font color=#FFFFFF size=+1>
+Day 46<BR>
+12.8.2000<BR>
+------------<BR>
+</font>
+X) Created "freaking huge terrain texture"-code for terrain blending<BR>
+ - Now I try to create lots of texture maps for each terrain tile, which will be blended in a <BR>
+   precalculation step. This takes approx. 1 minute, but it speeds up r_speed.<BR>
+ - I still "loose" some textures and I don't know why. [FIXED]<BR>
+ - Terrain texture alignemt is still wrong. [FIXED]<BR>
+ - Somehow the stone texture isn't blended correctly and it just fades to white. [FIXED]<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="47">
+<font color=#FFFFFF size=+1>
+Day 47<BR>
+13.8.2000<BR>
+------------<BR>
+</font>
+X) Solved remaining terrain blending issues<BR>
+ - There's a certain "border" effect at each tile, but I'll remedy that in the next step<BR>
+<BR>
+X) Began with Terrain-LOD<BR>
+ - First tests work -almost.<BR>
+ - The distance calculation seems to be non-working at certain angles [FIXED]<BR>
+ - the terrain is not exactly where it should be [FIXED]<BR>
+ - LOD works!!<BR>
+ - Texture scaling needs to be done according to LOD, and the texture calcs need to be updated too!<BR>
+ - I get stray faces appearing and connecting everything to 0/0/0<BR>
+<BR>
+X) Apparently there is a crash bug appearing when one of my missiles is heading towards the enemy base<BR>
+   and the enemy defenses try to destroy my missile!!!<BR>
+ - It looks like the cras bug is happening almost randomly, but has something to do with the missiles!<BR>
+ - WHAT THE...?!? As soon as I switch to the DEBUG-Profile, there's no crash anymore!!<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap46.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap46.jpg" border=0></a> (Smooth terrain texturing)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="48">
+<font color=#FFFFFF size=+1>
+Day 48<BR>
+19.8.2000<BR>
+------------<BR>
+</font>
+X) Solved "stray line" problem with LOD<BR>
+<BR>
+X) Fixed Crash bug<BR>
+ - It was an out-of-bounds array operation<BR>
+<BR>
+X) Began modifying terrain texture code for LOD<BR>
+ - Still using the wrong textures for the wrong tiles.<BR>
+ - Framerate goes down to unacceptable values when using LINEAR_MIPMAP_LINEAR.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap47.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap47.jpg" border=0></a> (The messy Terrain with LOD)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap48.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap48.jpg" border=0></a> (Note the much increased Range of vision)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap49.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap49.jpg" border=0></a> (Another shot, this time with the usual linear interpolation again)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="49">
+<font color=#FFFFFF size=+1>
+Day 49<BR>
+20.8.2000<BR>
+------------<BR>
+</font>
+X) Solved texturing issues<BR>
+ - After re-enabling terravin lighting, I was able to see the most beautiful terrain in DRaid history.<BR>
+<BR>
+X) Switched to one 2048x2048 sized terrain texture<BR>
+ - ...in order to get rid of the borders.<BR>
+<BR>
+X) Added water code
+ - It's basically just 2 triangles, but it looks good as hell.
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap50.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap50.jpg" border=0></a> (Showing off the LOD algorythm in wireframe display)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap51.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap51.jpg" border=0></a> (A wonderful terrain shot)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap52.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap52.jpg" border=0></a> (And another one)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap53.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap53.jpg" border=0></a> (The first shot with water!!)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap54.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap54.jpg" border=0></a> (Another water screenshot in the morning)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap55.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap55.jpg" border=0></a> (Same scene in the evening)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="50">
+<font color=#FFFFFF size=+1>
+Day 50<BR>
+22.8.2000<BR>
+------------<BR>
+</font>
+X) Added screenshot code<BR>
+ - It only works in fullscreen mode though.<BR>
+<BR>
+X) Created specifications for online-update<BR>
+ - Future versions will be able to automatically download the latest updates from the web,<BR>
+   without sending the user to a browser window.<BR>
+ - Upon game start, we'll check for an internet connection by pinging the master server, <BR>
+   and then check for a newer version.<BR>
+ - I'll use that method from the next demo version on, and users will eventually upgrade <BR>
+   to the final version through it.<BR>
+<BR>
+X) Wrote HTTP file download code<BR>
+ - ...and as you might have guessed, it's for the online update stuff.<BR>
+<BR>
+X) Felt an itch in my right toe<BR>
+ - It might just be my socks, but I'm not sure.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="51">
+<font color=#FFFFFF size=+1>
+Day 51<BR>
+16.8.2000<BR>
+------------<BR>
+</font>
+X) Added support for multiple terrain types<BR>
+ - Now Deranged Raid supports the following types of terrain: Lush, Lava, Desert, Stone and Snow.<BR>
+   These have to be selected prior to landscaping, and already include information on whether water is available or not.<BR>
+   Cloud haze has to be adjusted for the different types, though.<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap56.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap56.jpg" border=0></a> (Desert)</a><BR>
+<a href="http://spaceballs.dhs.org/draid/snap57.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap57.jpg" border=0></a> (Lava)</a><BR>
+<a href="http://spaceballs.dhs.org/draid/snap58.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap58.jpg" border=0></a> (Stone)</a><BR>
+<a href="http://spaceballs.dhs.org/draid/snap59.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap59.jpg" border=0></a> (Stone at evening)</a><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="52">
+<font color=#FFFFFF size=+1>
+Day 52<BR>
+17.10.2000<BR>
+------------<BR>
+</font>
+X) Wrote first draft for network code<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="53">
+<font color=#FFFFFF size=+1>
+Day 53<BR>
+18.10.2000<BR>
+------------<BR>
+</font>
+X) Updated Network code draft<BR>
+<BR>
+X) Registered www.derangedraid.com and updated project website graphics<BR>
+<BR>
+X) Continued work on menu key handling and display<BR>
+ - Model/Texture swapping works as needed. Now I can start with the console text display.<BR>
+ - Deranged Raid finally has a proper way to quit (instead of the dreaded ESC-key :))<BR>
+<BR>
+Pictures:<BR>
+<a href="http://spaceballs.dhs.org/draid/snap60.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap60.jpg" border=0></a> (Menue-ing in the evening)<BR>
+<a href="http://spaceballs.dhs.org/draid/snap61.jpg"><img src="http://spaceballs.dhs.org/draid/ssnap61.jpg" border=0></a> (I love these colors)<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="54">
+<font color=#FFFFFF size=+1>
+Day 54<BR>
+19.10.2000<BR>
+------------<BR>
+</font>
+X) Changed Object Array indexing method<BR>
+- Until now, when an object was deleted, all the objects "below" the deleted object were moved up by one position to fill the gap.<BR>
+- The new version just deletes the object out of the array, leaving a gap. When adding an object, the AddObject function first looks for a gap to fill, and only adds the new object at the end of the list if no gap was found.<BR>
+- Hey, it even works much more stable than before!<BR>
+<BR>
+X) Serious slowdown!<BR>
+ - Why is everything so slow? It looks like I did something wrong that kills the framerate down to a slideshow!<BR>
+<BR>
+X) Found reason for slowdown<BR>
+ - It's the text rendering! I'll have to come up with an alternative method...<BR>
+<BR>
+X) Fixed Crash bug<BR>
+ - ...in the release profile. It was a simple out-of-bounds Sin[] array error in the function RotateVertexNormals()<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="55">
+<font color=#FFFFFF size=+1>
+Day 55<BR>
+26.10.2000<BR>
+------------<BR>
+</font>
+X) Formulated the rest of the client and server network behaviour. <BR>
+- That means that everything the network code should do is now written down. Now comes the implementing part of the process. There's already a lot of pseudo-code, and even a barebone version of the almighty "network.cpp". I'm basically starting with the roughest functions, getting more and more detailed each time I create sub-functions. Unlike the grown code of the rest of DRaid, this will be helluva lot more structurized.<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="56">
+<font color=#FFFFFF size=+1>
+Day 56<BR>
+27.10.2000<BR>
+------------<BR>
+</font>
+X) Wrote a complete set of low-level network functions.<BR>
+ - They are easily interfaceable with the rest of the code. We can even switch protocols lateron, because it's very modular. The current protocol is UDP, simply because it's easy to use. A TCP version will follow later, so that we can compare the two under real-life conditions, and just pick the one best suited to our needs. <BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="57">
+<font color=#FFFFFF size=+1>
+Day 57<BR>
+28.10.2000<BR>
+------------<BR>
+</font>
+X) Continued work on net_udp.cpp and network.cpp<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="58">
+<font color=#FFFFFF size=+1>
+Day 58<BR>
+8.11.2000<BR>
+------------<BR>
+</font>
+X) First working test of net_udp.cpp<BR>
+- The low level network code WORKS!!!!!<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<A NAME="59">
+<font color=#FFFFFF size=+1>
+Day 59<BR>
+17.11.2000<BR>
+------------<BR>
+</font>
+X) Began work on Linux Masterserver<BR>
+- The masterserver has to collate a list of all available internet game servers. Clients can send a request, which the masterserver answers by sending the list back to the client. That way the server list is copied to the client's screen, where he can select a gameserver to join.<BR>
+- The masterserver also creates a webpage showing all running gameservers. This webpage is available at http://draid.n3.net<BR>
+
+
+
+</font>
+<br><br><br><br>
+<br><br><br><br>
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>

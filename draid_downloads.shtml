@@ -1,0 +1,98 @@
+<TITLE>Deranged Raid / Downloads</TITLE>
+<A NAME="top">
+
+<BODY TEXT="#CCFFFF" BGCOLOR="#000000" LINK="#FF8000" VLINK="#FF8000" ALINK="#FFFF00">
+
+<MAP NAME="draid">
+<AREA SHAPE="rect" COORDS="125,245,257,278" HREF="draid.shtml"> 
+<AREA SHAPE="rect" COORDS="270,245,402,278" HREF="draid_development.shtml"> 
+<AREA SHAPE="rect" COORDS="415,245,547,278" HREF="draid_screenshots.shtml"> 
+<AREA SHAPE="rect" COORDS="560,245,692,278" HREF="draid_downloads.shtml"> 
+<AREA SHAPE="rect" COORDS="705,245,837,278" HREF="http://www.settlers.net/cgi-bin/UBB/ultimatebb.cgi?category=5"> 
+</MAP> 
+
+<CENTER>
+<img src="draid/images/titlebar.jpg" align=CENTER halign=center walign=center USEMAP=#draid border=0>
+</CENTER>
+<BR>
+<!--#include virtual="banner.txt"-->
+
+<br>
+
+<BR>
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+
+
+This is it: The game itself. After a long long waiting period, it has finally come true: You can download DerangedRaid and wittness all the eyecandy with your own eyes.<BR>
+NOTE: This is a beta-version. Maybe just a demo. It depends on the point of view. You should see it as a "basic package", which is able to update itself automatically via the "AutoUpdater", accessible within the game. Many small and some quite big improvements and new features will eventually find their way to you via these Auto-Updates.<br>
+But for now, enjoy what's there. And remember that this really isn't a finished game. 
+
+<br><br><br><br><br>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;Deranged Raid RELEASE 1</font></b></td></tr></table>
+<br><br>
+<b>Features:</b><br>
+<br>
+Large detailed terrain<br>
+5 different terrain types<br>
+Realistic day/night cycles<br>
+Dynamic Level-Of-Detail<br>
+MP3 Soundtrack, can be replaced by an unlimited number of custom MP3s<br>
+3 different ships to fly<br>
+Many different buildings<br>
+Powerful and funky weapons (homing missiles, satellite cannon, etc)<br>
+Integrated Auo-Updater provides new features and weapons as they become available<br>
+
+<br>
+<b>Not contained in this release:</b><br>
+<br>
+Strategical-AI<br>
+Multiplayer<br>
+Game Interface<br>
+Weather effects<br>
+<br>
+<br>
+<br>
+[<a href="http://www.fileplanet.com/index.asp?file=55900">DOWNLOAD DERANGED RAID</a>] (55 MB) from FilePlanet (PLEASE USE THIS ONE IF POSSIBLE!!)<br>
+[<a href="http://www.3dfiles.com/games/derangedraid.shtml">DOWNLOAD DERANGED RAID</a>] (55 MB) from 3dFiles.com<br>
+[<a href="http://www.settlers.net/downloads/draid.shtml">DOWNLOAD DERANGED RAID</a>] (55 MB) from settlers.net<br>
+
+<!--[<a href="http://spaceballs.dhs.org/draid/derangedraid413.zip">DOWNLOAD DERANGED RAID</a>] (55 MB) from spaceballs.dhs.org<br>-->
+<!--[<a href="http://www.playspoon.com/draid/derangedraid.zip">DOWNLOAD DERANGED RAID</a>] (55 MB) from playspoon.com<br>-->
+<br>
+<br>
+And in case you keep having troubles running DerangedRaid, you can download a textmode AutoUpdate program here:<br>
+[<a href="http://www.playspoon.com/draid/AutoUpdate.zip">DOWNLOAD EXTERNAL AUTOUPDATER</a>] (27 KB) from playspoon.com<br>
+
+
+<br><br><br><br><br>
+<table bgcolor=#3F88BE cellspacing=0 cellpading=0 border=0 width=100% background="barback1.jpg">
+<tr><td><font face="Arial,Helvetica" size=-1 color=#FFFFFF>
+<b>&nbsp;DerangedRaid Sourcecode</font></b></td></tr></table>
+<br><br>
+<b>YOU DO NOT NEED THIS IN ORDER TO PLAY.</b><br>
+This is only meant for programmers and folks who want to compile the game. Note that you'll need the datafiles contained in the standard package above too. I also recommend you to always auo-update before using the sourcecode below.<br>
+<br>
+<br>
+<br>
+[<a href="http://spaceballs.dhs.org/draid/derangedraid_src.zip">DOWNLOAD DERANGED RAID SOURCECODE</a>] (280 KB) always the latest version<br>
+[<a href="http://spaceballs.dhs.org/draid/sdk_kit.zip">DOWNLOAD NEEDED SDKs</a>] (2.6 MB) includes everything else needed to compile the game<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<BR><BR>
+
+<font face="Arial,Helvetica" size=2 color=7F7F7F>
+[<A HREF="#top">Top</A>]
+</font>
+<center>
+<br>
+<b><!--#exec cgi="cgi-bin/randomtext.cgi"--></b>
+<br>
+</center>
